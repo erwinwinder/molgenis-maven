@@ -11,13 +11,20 @@ This is a multi-module maven project
 
 ## How to build
 
-checkout
-cd molgenis-maven
-mvn install
-cd molgenis-maven-portal
-mvn jetty:run
+    checkout
+    cd molgenis-maven
+    mvn install
+    cd molgenis-maven-portal
+    mvn jetty:run
 
 ## Open discussions
 
-How to deal with multiple generated modules such as -omx?
-Because we would like to implement them as small apps that could be assembled into a bigger one.
+1. We want to deal with multiple generated modules such as -omx
+
+How to demo: we would like to implement them as small apps that could be assembled into a bigger one.
+
+2. We want to NOT generate the UI but instead program it.
+
+How to demo: we use factory methods?
+
+
