@@ -1,0 +1,83 @@
+INSERT INTO MolgenisRole (__Type, id, name) values ('MolgenisGroup', 1, 'system');
+INSERT INTO MolgenisRole (__Type, id, name) values ('MolgenisUser', 2, 'admin');
+INSERT INTO MolgenisRole (__Type, id, name) values ('MolgenisUser', 3, 'anonymous');
+INSERT INTO MolgenisRole (__Type, id, name) values ('MolgenisGroup', 4, 'AllUsers');
+
+INSERT INTO MolgenisGroup (id) values (1);
+INSERT INTO MolgenisGroup (id) values (4);
+
+INSERT INTO Person (id, Email, FirstName, LastName) values (2, 'put_something_here@somewhere.com', 'admin', 'admin');
+INSERT INTO Person (id, Email, FirstName, LastName) values (3, 'put_something_here@somewhere.com', 'anonymous','anonymous');
+INSERT INTO MolgenisUser (id, password_, active, superuser) values (2, 'md5_21232f297a57a5a743894a0e4a801fc3', true, true);
+INSERT INTO MolgenisUser (id, password_, active) values (3, 'md5_294de3557d9d00b3d2d8a1e6aab028cf', true);
+
+
+INSERT INTO MolgenisRoleGroupLink (group_, role_) values (1, 2);
+INSERT INTO MolgenisRoleGroupLink (group_, role_) values (4, 2);
+INSERT INTO MolgenisRoleGroupLink (group_, role_) values (1, 3);
+INSERT INTO MolgenisRoleGroupLink (group_, role_) values (4, 3);
+
+INSERT INTO MolgenisEntity(name, type_, classname) values ('MolgenisEntity', 'ENTITY', 'org.molgenis.core.MolgenisEntity');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('MolgenisFile', 'ENTITY', 'org.molgenis.core.MolgenisFile');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('RuntimeProperty', 'ENTITY', 'org.molgenis.core.RuntimeProperty');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('MolgenisRole', 'ENTITY', 'org.molgenis.auth.MolgenisRole');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('MolgenisGroup', 'ENTITY', 'org.molgenis.auth.MolgenisGroup');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('MolgenisUser', 'ENTITY', 'org.molgenis.auth.MolgenisUser');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('MolgenisRoleGroupLink', 'ENTITY', 'org.molgenis.auth.MolgenisRoleGroupLink');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('MolgenisPermission', 'ENTITY', 'org.molgenis.auth.MolgenisPermission');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Characteristic', 'ENTITY', 'org.molgenis.observ.Characteristic');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('ObservationTarget', 'ENTITY', 'org.molgenis.observ.ObservationTarget');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('ObservableFeature', 'ENTITY', 'org.molgenis.observ.ObservableFeature');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Category', 'ENTITY', 'org.molgenis.observ.Category');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Protocol', 'ENTITY', 'org.molgenis.observ.Protocol');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('DataSet', 'ENTITY', 'org.molgenis.observ.DataSet');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('ObservationSet', 'ENTITY', 'org.molgenis.observ.ObservationSet');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('ObservedValue', 'ENTITY', 'org.molgenis.observ.ObservedValue');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Species', 'ENTITY', 'org.molgenis.observ.target.Species');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Individual', 'ENTITY', 'org.molgenis.observ.target.Individual');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Panel', 'ENTITY', 'org.molgenis.observ.target.Panel');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('PanelSource', 'ENTITY', 'org.molgenis.observ.target.PanelSource');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Ontology', 'ENTITY', 'org.molgenis.observ.target.Ontology');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('OntologyTerm', 'ENTITY', 'org.molgenis.observ.target.OntologyTerm');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Accession', 'ENTITY', 'org.molgenis.observ.target.Accession');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Genome', 'ENTITY', 'org.molgenis.variant.Genome');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Chromosome', 'ENTITY', 'org.molgenis.variant.Chromosome');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Gene', 'ENTITY', 'org.molgenis.variant.Gene');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Protein', 'ENTITY', 'org.molgenis.variant.Protein');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('ProteinDomain', 'ENTITY', 'org.molgenis.variant.ProteinDomain');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Exon', 'ENTITY', 'org.molgenis.variant.Exon');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Variant', 'ENTITY', 'org.molgenis.variant.Variant');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Study', 'ENTITY', 'org.molgenis.organization.Study');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Experiment', 'ENTITY', 'org.molgenis.organization.Experiment');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Institute', 'ENTITY', 'org.molgenis.organization.Institute');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Person', 'ENTITY', 'org.molgenis.organization.Person');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Citation', 'ENTITY', 'org.molgenis.organization.Citation');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Contribution', 'ENTITY', 'org.molgenis.organization.Contribution');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Submission', 'ENTITY', 'org.molgenis.organization.Submission');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Investigation', 'ENTITY', 'org.molgenis.gwascentral.Investigation');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('StudyDetails', 'ENTITY', 'org.molgenis.gwascentral.StudyDetails');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('FrequencyCluster', 'ENTITY', 'org.molgenis.gwascentral.FrequencyCluster');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('GenotypeFrequency', 'ENTITY', 'org.molgenis.gwascentral.GenotypeFrequency');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('AlleleFrequency', 'ENTITY', 'org.molgenis.gwascentral.AlleleFrequency');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('PhenotypeProperty', 'ENTITY', 'org.molgenis.gwascentral.PhenotypeProperty');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('PhenotypeMethod', 'ENTITY', 'org.molgenis.gwascentral.PhenotypeMethod');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('PhenotypeValue', 'ENTITY', 'org.molgenis.gwascentral.PhenotypeValue');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('SamplePanel', 'ENTITY', 'org.molgenis.gwascentral.SamplePanel');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('AssayedPanel', 'ENTITY', 'org.molgenis.gwascentral.AssayedPanel');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('GWASExperiment', 'ENTITY', 'org.molgenis.gwascentral.GWASExperiment');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('UsedMarkerSet', 'ENTITY', 'org.molgenis.gwascentral.UsedMarkerSet');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Significance', 'ENTITY', 'org.molgenis.gwascentral.Significance');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('EffectSize', 'ENTITY', 'org.molgenis.gwascentral.EffectSize');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('SelectionCriteria', 'ENTITY', 'org.molgenis.gwascentral.SelectionCriteria');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Protocol_Subprotocols', 'ENTITY', 'org.molgenis.observ.Protocol_Subprotocols');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Protocol_Features', 'ENTITY', 'org.molgenis.observ.Protocol_Features');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Panel_Individuals', 'ENTITY', 'org.molgenis.observ.target.Panel_Individuals');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Experiment_AssayedPanels', 'ENTITY', 'org.molgenis.organization.Experiment_AssayedPanels');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Experiment_DataSets', 'ENTITY', 'org.molgenis.organization.Experiment_DataSets');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Person_AffiliateInstitutions', 'ENTITY', 'org.molgenis.organization.Person_AffiliateInstitutions');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('Citation_OntologyTerms', 'ENTITY', 'org.molgenis.organization.Citation_OntologyTerms');
+INSERT INTO MolgenisEntity(name, type_, classname) values ('StudyDetails_OtherCitations', 'ENTITY', 'org.molgenis.gwascentral.StudyDetails_OtherCitations');
+
+INSERT INTO MolgenisEntity(name, type_, classname) values ('investigationFormController', 'FORM', 'app.ui.investigationFormController');
+
+INSERT INTO MolgenisPermission (role_, entity, permission) SELECT 3, id, 'read' FROM MolgenisEntity WHERE MolgenisEntity.name = 'UserLoginPlugin';

@@ -1,0 +1,6 @@
+*/target/*
+*.settings*
+*.project*
+*.classpath*
+logger.out
+*/.logger.out

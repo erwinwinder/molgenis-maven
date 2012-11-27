@@ -1,0 +1,309 @@
+digraph G {
+        color = "white"
+		compound = true
+		fontname = "Bitstream Vera Sans"
+		fontsize = 8
+		pagedir="TB"
+		rankdir="BT"
+		bgcolor = "lightyellow"  
+		labelfloat = "true"
+		mode = "hier"
+		overlap = "false"
+		splines = "true"
+		layers = "1:2"
+		clusterrank = "local"
+		outputorder="edgesfirst"
+
+        node [
+			fontname = "Arial"
+            fontsize = 8
+            shape = "record"
+            color = "#808080"
+            style="filled"
+            fillcolor = "white"
+            layer = "2"
+            colorscheme = pastel19
+        ]
+
+        edge [
+                fontname = "Bitstream Vera Sans"
+                fontsize = 8
+                layer = "1"
+        ]
+
+/* entities outside modules*/
+               "Study" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Study\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\ldescription : text\lstartDate : datetime\lupdateDate : datetime*\lendDate : datetime\lcontact : xref-&gt;person\lpartOfInvestigation : xref-&gt;investigation*\l}"
+                ]
+
+               "Experiment" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Experiment\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\lstudy : xref-&gt;study*\ldesign : string\lexperimentType : xref-&gt;ontologyTerm*\ltotalMarkersTested : int\ltotalMarkersImported : int\lobjective : text\loutcome : text\lcomments : text\lindividualDataStatement : text\ltimeCreated : datetime*\lassayedPanels : mref-&gt;panel*\ldataSets : mref-&gt;dataSet*\l}"
+                ]
+
+               "Institute" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Institute\n implements Autoid|id : int*\lname : string*\laddress : text\lphone : string\lcity : string\lcountry : string\lfax : string\l}"
+                ]
+
+               "Person" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Person\n implements Autoid|id : int*\lname : string*\ltitle : string\lfirstName : string\lmidInitials : string\llastName : string\lemail : email\lphone : string\lprimaryAffilation : xref-&gt;institute\laffiliateInstitutions : mref-&gt;institute\lorcidPersonReference : xref-&gt;ontologyTerm\l}"
+                ]
+
+               "Citation" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Citation\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\lpubmedID : string\ldOI : string\lontologyTerms : mref-&gt;ontologyTerm\lauthorList : text\ltitle : string*\ldescription : text*\lstatus : xref-&gt;ontologyTerm\l}"
+                ]
+
+               "Contribution" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Contribution\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\lresearcher : xref-&gt;person*\lsubmission : xref-&gt;submission*\lisSubmitter : enum*\lisAuthor : enum*\lisSource : enum*\l}"
+                ]
+
+               "Submission" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Submission\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\ltimeCreated : datetime*\lstudy : xref-&gt;study*\l}"
+                ]
+
+/*entities inside modules*/
+/*        subgraph cluster_0 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.core"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_1 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.auth"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_2 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.observ"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_3 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.observ.target"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_4 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.variant"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_5 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.organization"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+                "Study" [
+                	    style = "filled"
+                	    fillcolor =  "6"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Study\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\ldescription : text\lstartDate : datetime\lupdateDate : datetime*\lendDate : datetime\lcontact : xref-&gt;person\lpartOfInvestigation : xref-&gt;investigation*\l}"
+                ]
+                "Experiment" [
+                	    style = "filled"
+                	    fillcolor =  "6"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Experiment\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\lstudy : xref-&gt;study*\ldesign : string\lexperimentType : xref-&gt;ontologyTerm*\ltotalMarkersTested : int\ltotalMarkersImported : int\lobjective : text\loutcome : text\lcomments : text\lindividualDataStatement : text\ltimeCreated : datetime*\lassayedPanels : mref-&gt;panel*\ldataSets : mref-&gt;dataSet*\l}"
+                ]
+                "Institute" [
+                	    style = "filled"
+                	    fillcolor =  "6"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Institute\n implements Autoid|id : int*\lname : string*\laddress : text\lphone : string\lcity : string\lcountry : string\lfax : string\l}"
+                ]
+                "Person" [
+                	    style = "filled"
+                	    fillcolor =  "6"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Person\n implements Autoid|id : int*\lname : string*\ltitle : string\lfirstName : string\lmidInitials : string\llastName : string\lemail : email\lphone : string\lprimaryAffilation : xref-&gt;institute\laffiliateInstitutions : mref-&gt;institute\lorcidPersonReference : xref-&gt;ontologyTerm\l}"
+                ]
+                "Citation" [
+                	    style = "filled"
+                	    fillcolor =  "6"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Citation\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\lpubmedID : string\ldOI : string\lontologyTerms : mref-&gt;ontologyTerm\lauthorList : text\ltitle : string*\ldescription : text*\lstatus : xref-&gt;ontologyTerm\l}"
+                ]
+                "Contribution" [
+                	    style = "filled"
+                	    fillcolor =  "6"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Contribution\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\lresearcher : xref-&gt;person*\lsubmission : xref-&gt;submission*\lisSubmitter : enum*\lisAuthor : enum*\lisSource : enum*\l}"
+                ]
+                "Submission" [
+                	    style = "filled"
+                	    fillcolor =  "6"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Submission\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\ltimeCreated : datetime*\lstudy : xref-&gt;study*\l}"
+                ]
+/*        }  */
+/*        subgraph cluster_6 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.gwascentral"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+
+/*interface relationships*/
+        edge [
+                arrowhead = "empty"
+                color = "#808080"
+        ]
+
+/*inheritance relationships*/
+        edge [
+                arrowhead = "empty"
+                color = "black"
+        ]
+        
+
+/*one to many 'xref' foreign key relationships*/
+        edge [
+                arrowhead = "open"
+                arrowsize = 0.6
+        ]
+		"Study" -> "Person" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Study" -> "Investigation" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"Experiment" -> "Study" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"Experiment" -> "OntologyTerm" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"Person" -> "Institute" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Person" -> "OntologyTerm" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Citation" -> "OntologyTerm" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Contribution" -> "Person" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"Contribution" -> "Submission" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"Submission" -> "Study" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+        
+        
+/*many to many 'mref' foreign key relationships*/
+        edge [
+             arrowtail = "open"
+             color = "black"
+             headlabel = "*"
+             taillabel = "*"
+             arrowsize = 0.6
+        ]
+		"Experiment" -> "Panel"[
+			]
+		"Experiment" -> "DataSet"[
+			]
+		"Person" -> "Institute"[
+			]
+		"Citation" -> "OntologyTerm"[
+			]
+}

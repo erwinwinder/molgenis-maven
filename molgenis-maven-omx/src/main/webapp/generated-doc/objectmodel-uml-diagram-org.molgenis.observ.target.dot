@@ -1,0 +1,295 @@
+digraph G {
+        color = "white"
+		compound = true
+		fontname = "Bitstream Vera Sans"
+		fontsize = 8
+		pagedir="TB"
+		rankdir="BT"
+		bgcolor = "lightyellow"  
+		labelfloat = "true"
+		mode = "hier"
+		overlap = "false"
+		splines = "true"
+		layers = "1:2"
+		clusterrank = "local"
+		outputorder="edgesfirst"
+
+        node [
+			fontname = "Arial"
+            fontsize = 8
+            shape = "record"
+            color = "#808080"
+            style="filled"
+            fillcolor = "white"
+            layer = "2"
+            colorscheme = pastel19
+        ]
+
+        edge [
+                fontname = "Bitstream Vera Sans"
+                fontsize = 8
+                layer = "1"
+        ]
+
+/* entities outside modules*/
+               "Species" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Species\n extends ontologyTerm|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\lontology : xref-&gt;ontology\ltermAccession : string\ldefinition : string\l}"
+                ]
+
+               "Individual" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Individual\n extends observationTarget|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lmother : xref-&gt;individual\lfather : xref-&gt;individual\l}"
+                ]
+
+               "Panel" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Panel\n extends observationTarget|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lpanelType : xref-&gt;ontologyTerm\lnumberOfIndividuals : int*\lspecies : xref-&gt;species\lindividuals : mref-&gt;individual\l}"
+                ]
+
+               "PanelSource" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PanelSource\n implements Autoid|id : int*\lcurrentPanel : xref-&gt;panel*\lsourcePanel : xref-&gt;panel*\lnumberOfIndividuals : int\lselectionCriteria : text*\l}"
+                ]
+
+               "Ontology" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Ontology\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\lontologyAccession : string\lontologyURI : hyperlink\l}"
+                ]
+
+               "OntologyTerm" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{OntologyTerm\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\lontology : xref-&gt;ontology\ltermAccession : string\ldefinition : string\l}"
+                ]
+
+               "Accession" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Accession\n extends ontologyTerm|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\lontology : xref-&gt;ontology\ltermAccession : string\ldefinition : string\l}"
+                ]
+
+/*entities inside modules*/
+/*        subgraph cluster_0 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.core"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_1 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.auth"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_2 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.observ"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_3 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.observ.target"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+                "Species" [
+                	    style = "filled"
+                	    fillcolor =  "4"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Species\n extends OntologyTerm|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\lontology : xref-&gt;ontology\ltermAccession : string\ldefinition : string\l}"
+                ]
+                "Individual" [
+                	    style = "filled"
+                	    fillcolor =  "4"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Individual\n extends ObservationTarget|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lmother : xref-&gt;individual\lfather : xref-&gt;individual\l}"
+                ]
+                "Panel" [
+                	    style = "filled"
+                	    fillcolor =  "4"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Panel\n extends ObservationTarget|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lpanelType : xref-&gt;ontologyTerm\lnumberOfIndividuals : int*\lspecies : xref-&gt;species\lindividuals : mref-&gt;individual\l}"
+                ]
+                "PanelSource" [
+                	    style = "filled"
+                	    fillcolor =  "4"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PanelSource\n implements Autoid|id : int*\lcurrentPanel : xref-&gt;panel*\lsourcePanel : xref-&gt;panel*\lnumberOfIndividuals : int\lselectionCriteria : text*\l}"
+                ]
+                "Ontology" [
+                	    style = "filled"
+                	    fillcolor =  "4"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Ontology\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\lontologyAccession : string\lontologyURI : hyperlink\l}"
+                ]
+                "OntologyTerm" [
+                	    style = "filled"
+                	    fillcolor =  "4"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{OntologyTerm\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\lontology : xref-&gt;ontology\ltermAccession : string\ldefinition : string\l}"
+                ]
+                "Accession" [
+                	    style = "filled"
+                	    fillcolor =  "4"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Accession\n extends OntologyTerm|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\lontology : xref-&gt;ontology\ltermAccession : string\ldefinition : string\l}"
+                ]
+/*        }  */
+/*        subgraph cluster_4 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.variant"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_5 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.organization"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_6 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.gwascentral"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+
+/*interface relationships*/
+        edge [
+                arrowhead = "empty"
+                color = "#808080"
+        ]
+
+/*inheritance relationships*/
+        edge [
+                arrowhead = "empty"
+                color = "black"
+        ]
+        
+        "Species" -> "OntologyTerm"
+        "Individual" -> "ObservationTarget"
+        "Panel" -> "ObservationTarget"
+        "Accession" -> "OntologyTerm"
+
+/*one to many 'xref' foreign key relationships*/
+        edge [
+                arrowhead = "open"
+                arrowsize = 0.6
+        ]
+		"Individual" -> "Individual" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Individual" -> "Individual" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Panel" -> "OntologyTerm" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Panel" -> "Species" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"PanelSource" -> "Panel" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"PanelSource" -> "Panel" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"OntologyTerm" -> "Ontology" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+        
+        
+/*many to many 'mref' foreign key relationships*/
+        edge [
+             arrowtail = "open"
+             color = "black"
+             headlabel = "*"
+             taillabel = "*"
+             arrowsize = 0.6
+        ]
+		"Panel" -> "Individual"[
+			]
+}

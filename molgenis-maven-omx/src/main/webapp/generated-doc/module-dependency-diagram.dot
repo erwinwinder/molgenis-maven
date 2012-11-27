@@ -1,0 +1,94 @@
+digraph G {
+        color = "white"
+		compound = true
+		fontname = "Bitstream Vera Sans"
+		fontsize = 8
+		pagedir="TB"
+		rankdir="BT"
+		bgcolor = "lightyellow"  
+		labelfloat = "true"
+		mode = "hier"
+		overlap = "false"
+		splines = "true"
+		layers = "1:2"
+		clusterrank = "local"
+		outputorder="edgesfirst"
+
+        node [
+			fontname = "Arial"
+            fontsize = 8
+            shape = "record"
+            color = "#808080"
+            style="filled"
+            fillcolor = "white"
+            layer = "2"
+            colorscheme = pastel19
+        ]
+
+        edge [
+                fontname = "Bitstream Vera Sans"
+                fontsize = 8
+                layer = "1"
+        ]
+
+        edge [
+             taillabel = "5"
+        ]
+	"org.molgenis.auth"->"org.molgenis.core"
+        edge [
+             taillabel = "3"
+        ]
+	"org.molgenis.observ"->"org.molgenis.core"
+        edge [
+             taillabel = "2"
+        ]
+	"org.molgenis.observ"->"org.molgenis.observ.target"
+        edge [
+             taillabel = "2"
+        ]
+	"org.molgenis.observ.target"->"org.molgenis.observ"
+        edge [
+             taillabel = "3"
+        ]
+	"org.molgenis.observ.target"->"org.molgenis.core"
+        edge [
+             taillabel = "7"
+        ]
+	"org.molgenis.variant"->"org.molgenis.observ"
+        edge [
+             taillabel = "2"
+        ]
+	"org.molgenis.variant"->"org.molgenis.observ.target"
+        edge [
+             taillabel = "7"
+        ]
+	"org.molgenis.organization"->"org.molgenis.core"
+        edge [
+             taillabel = "1"
+        ]
+	"org.molgenis.organization"->"org.molgenis.gwascentral"
+        edge [
+             taillabel = "5"
+        ]
+	"org.molgenis.organization"->"org.molgenis.observ.target"
+        edge [
+             taillabel = "1"
+        ]
+	"org.molgenis.organization"->"org.molgenis.observ"
+        edge [
+             taillabel = "10"
+        ]
+	"org.molgenis.gwascentral"->"org.molgenis.core"
+        edge [
+             taillabel = "6"
+        ]
+	"org.molgenis.gwascentral"->"org.molgenis.organization"
+        edge [
+             taillabel = "10"
+        ]
+	"org.molgenis.gwascentral"->"org.molgenis.observ"
+        edge [
+             taillabel = "5"
+        ]
+	"org.molgenis.gwascentral"->"org.molgenis.observ.target"
+}

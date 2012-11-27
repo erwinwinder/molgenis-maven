@@ -1,0 +1,487 @@
+digraph G {
+        color = "white"
+		compound = true
+		fontname = "Bitstream Vera Sans"
+		fontsize = 8
+		pagedir="TB"
+		rankdir="BT"
+		bgcolor = "lightyellow"  
+		labelfloat = "true"
+		mode = "hier"
+		overlap = "false"
+		splines = "true"
+		layers = "1:2"
+		clusterrank = "local"
+		outputorder="edgesfirst"
+
+        node [
+			fontname = "Arial"
+            fontsize = 8
+            shape = "record"
+            color = "#808080"
+            style="filled"
+            fillcolor = "white"
+            layer = "2"
+            colorscheme = pastel19
+        ]
+
+        edge [
+                fontname = "Bitstream Vera Sans"
+                fontsize = 8
+                layer = "1"
+        ]
+
+/* entities outside modules*/
+               "Investigation" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Investigation\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\ltitle : text\lshortName : text\lversion : string\lbackground : text\l}"
+                ]
+
+               "StudyDetails" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{StudyDetails\n implements Autoid|id : int*\lstudy : xref-&gt;study*\ltitle : text\lshortName : text\lstudyAbstract : text*\lversion : string\lbackground : text\lobjectives : text\lkeyResults : text\lconclusions : text\lstudyDesign : text\lstudySizeReason : text\lstudyPower : text\lsourcesOfBias : text\llimitations : text\lacknowledgements : text\lprimaryCitation : xref-&gt;citation\lotherCitations : mref-&gt;citation\laccession : hyperlink\l}"
+                ]
+
+               "FrequencyCluster" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{FrequencyCluster\n extends dataSet|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lprotocolUsed : xref-&gt;protocol\lstartTime : datetime*\lendTime : datetime\ldataSet : xref-&gt;dataSet\lusedMarkerSet : xref-&gt;usedMarkerSet*\lmarkerID : int*\lnumberOfGenotypedSamples : int*\lpValueHWE : decimal\lunadjustedPValue : decimal\loddsRatioStatement : string\lattributableRiskStatement : string\l}"
+                ]
+
+               "GenotypeFrequency" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{GenotypeFrequency\n extends dataSet|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lprotocolUsed : xref-&gt;protocol\lstartTime : datetime*\lendTime : datetime\lfrequencyCluster : xref-&gt;frequencyCluster\lgenotypeCombo : text\lfrequencyAsProportion : decimal*\lnumberSamplesWithGenotype : int\l}"
+                ]
+
+               "AlleleFrequency" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{AlleleFrequency\n extends dataSet|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lprotocolUsed : xref-&gt;protocol\lstartTime : datetime*\lendTime : datetime\lfrequencyCluster : xref-&gt;frequencyCluster\lalleleCombo : text\lfrequencyAsProportion : decimal*\l}"
+                ]
+
+               "PhenotypeProperty" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PhenotypeProperty\n implements Identifiable\n extends observableFeature|id : int*\lidentifier : string*\lname : string\l__Type : enum*\ldescription : text\lunit : xref-&gt;ontologyTerm\ldataType : enum*\ltemporal : bool*\l}"
+                ]
+
+               "PhenotypeMethod" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PhenotypeMethod\n implements Identifiable\n extends dataSet|id : int*\lidentifier : string*\lname : string\l__Type : enum*\ldescription : text\lprotocolUsed : xref-&gt;protocol\lstartTime : datetime*\lendTime : datetime\lstudyID : xref-&gt;study*\lphenotypePropertyID : xref-&gt;phenotypeProperty*\lsample : string\l}"
+                ]
+
+               "PhenotypeValue" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PhenotypeValue\n implements Identifiable\n extends observedValue|id : int*\l__Type : enum*\lobservationSet : xref-&gt;observationSet*\lfeature : xref-&gt;observableFeature*\lcharacteristic : xref-&gt;characteristic\lvalue : string*\lidentifier : string*\lname : string\lphenotypePropertyID : xref-&gt;phenotypeProperty*\lvalueRank : string*\lvalueIsMean : string*\lsTD : string*\lmin : string*\lmax : string*\l}"
+                ]
+
+               "SamplePanel" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{SamplePanel\n implements Identifiable\n extends panel|id : int*\lidentifier : string*\lname : string\l__Type : enum*\ldescription : text\lpanelType : xref-&gt;ontologyTerm\lnumberOfIndividuals : int*\lspecies : xref-&gt;species\lindividuals : mref-&gt;individual\lcentralIdentifier : xref-&gt;ontologyTerm\llabel : string\laccession : string\laccessionVersion : string\lcomposition : text\ltotalNumberOfIndividuals : int\lnumberOfSexMale : int\lnumberOfSexFemale : int\lnumberOfSexUnknown : int\lnumberOfProbands : int\lnumberOfParents : int\lmodeOfRecruitment : string\ldiagnosisAgeRange : string\ldiagnosisPeriod : string\lsamplingAgeRange : string\lsamplingPeriod : string\lpopulationInfo : string\lgeographicRegionInfo : string\lethnicityInfo : string\lbirthPlaceInfo : string\ladmixtureInfo : string\lenvironmentInfo : text\lsourceOfDNA : string\ldNAsArePooled : enum*\ldNAsAreWGA : enum*\l}"
+                ]
+
+               "AssayedPanel" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{AssayedPanel\n implements Identifiable\n extends panel|id : int*\lidentifier : string*\lname : string\l__Type : enum*\ldescription : text\lpanelType : xref-&gt;ontologyTerm\lnumberOfIndividuals : int*\lspecies : xref-&gt;species\lindividuals : mref-&gt;individual\ltotalNumberOfIndividuals : int\lnumberOfSexMale : int\lnumberOfSexFemale : int\lnumberOfSexUnknown : int\lnumberOfProbands : int\lnumberOfParents : int\l}"
+                ]
+
+               "GWASExperiment" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{GWASExperiment\n implements Identifiable\n extends experiment|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\lstudy : xref-&gt;study*\ldesign : string\lexperimentType : xref-&gt;ontologyTerm*\ltotalMarkersTested : int\ltotalMarkersImported : int\lobjective : text\loutcome : text\lcomments : text\lindividualDataStatement : text\ltimeCreated : datetime*\lassayedPanels : mref-&gt;panel*\ldataSets : mref-&gt;dataSet*\l}"
+                ]
+
+               "UsedMarkerSet" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{UsedMarkerSet\n extends observableFeature|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lunit : xref-&gt;ontologyTerm\ldataType : enum*\ltemporal : bool*\lexperimentID : xref-&gt;experiment\lmarkerIdentifier : string\l}"
+                ]
+
+               "Significance" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Significance\n implements Autoid\n extends dataSet|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lprotocolUsed : xref-&gt;protocol\lstartTime : datetime*\lendTime : datetime\lusedmarkersetID : xref-&gt;usedMarkerSet*\lnegLogPValue : decimal\lunadjustedPValue : text\ladjustedPValue : decimal\l}"
+                ]
+
+               "EffectSize" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{EffectSize\n extends dataSet|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lprotocolUsed : xref-&gt;protocol\lstartTime : datetime*\lendTime : datetime\lusedMarkerSetID : xref-&gt;usedMarkerSet\llower95Bound : decimal*\lupper95Bound : decimal*\lstdError : decimal*\l}"
+                ]
+
+               "SelectionCriteria" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{SelectionCriteria\n implements Autoid|id : int*\lsourcePanel : xref-&gt;panel*\ltargetPanel : xref-&gt;panel*\lnumberOfIndividuals : int*\ldetails : text*\l}"
+                ]
+
+/*entities inside modules*/
+/*        subgraph cluster_0 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.core"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_1 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.auth"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_2 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.observ"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_3 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.observ.target"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_4 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.variant"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_5 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.organization"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+/*        }  */
+/*        subgraph cluster_6 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.gwascentral"
+                labelloc = bottom
+				fillcolor = "white"
+                style="filled"*/
+
+                "Investigation" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Investigation\n implements Identifiable|id : int*\lidentifier : string*\lname : string*\ltitle : text\lshortName : text\lversion : string\lbackground : text\l}"
+                ]
+                "StudyDetails" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{StudyDetails\n implements Autoid|id : int*\lstudy : xref-&gt;study*\ltitle : text\lshortName : text\lstudyAbstract : text*\lversion : string\lbackground : text\lobjectives : text\lkeyResults : text\lconclusions : text\lstudyDesign : text\lstudySizeReason : text\lstudyPower : text\lsourcesOfBias : text\llimitations : text\lacknowledgements : text\lprimaryCitation : xref-&gt;citation\lotherCitations : mref-&gt;citation\laccession : hyperlink\l}"
+                ]
+                "FrequencyCluster" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{FrequencyCluster\n extends DataSet|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lprotocolUsed : xref-&gt;protocol\lstartTime : datetime*\lendTime : datetime\ldataSet : xref-&gt;dataSet\lusedMarkerSet : xref-&gt;usedMarkerSet*\lmarkerID : int*\lnumberOfGenotypedSamples : int*\lpValueHWE : decimal\lunadjustedPValue : decimal\loddsRatioStatement : string\lattributableRiskStatement : string\l}"
+                ]
+                "GenotypeFrequency" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{GenotypeFrequency\n extends DataSet|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lprotocolUsed : xref-&gt;protocol\lstartTime : datetime*\lendTime : datetime\lfrequencyCluster : xref-&gt;frequencyCluster\lgenotypeCombo : text\lfrequencyAsProportion : decimal*\lnumberSamplesWithGenotype : int\l}"
+                ]
+                "AlleleFrequency" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{AlleleFrequency\n extends DataSet|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lprotocolUsed : xref-&gt;protocol\lstartTime : datetime*\lendTime : datetime\lfrequencyCluster : xref-&gt;frequencyCluster\lalleleCombo : text\lfrequencyAsProportion : decimal*\l}"
+                ]
+                "PhenotypeProperty" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PhenotypeProperty\n implements Identifiable\n extends ObservableFeature|id : int*\lidentifier : string*\lname : string\l__Type : enum*\ldescription : text\lunit : xref-&gt;ontologyTerm\ldataType : enum*\ltemporal : bool*\l}"
+                ]
+                "PhenotypeMethod" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PhenotypeMethod\n implements Identifiable\n extends DataSet|id : int*\lidentifier : string*\lname : string\l__Type : enum*\ldescription : text\lprotocolUsed : xref-&gt;protocol\lstartTime : datetime*\lendTime : datetime\lstudyID : xref-&gt;study*\lphenotypePropertyID : xref-&gt;phenotypeProperty*\lsample : string\l}"
+                ]
+                "PhenotypeValue" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PhenotypeValue\n implements Identifiable\n extends ObservedValue|id : int*\l__Type : enum*\lobservationSet : xref-&gt;observationSet*\lfeature : xref-&gt;observableFeature*\lcharacteristic : xref-&gt;characteristic\lvalue : string*\lidentifier : string*\lname : string\lphenotypePropertyID : xref-&gt;phenotypeProperty*\lvalueRank : string*\lvalueIsMean : string*\lsTD : string*\lmin : string*\lmax : string*\l}"
+                ]
+                "SamplePanel" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{SamplePanel\n implements Identifiable\n extends Panel|id : int*\lidentifier : string*\lname : string\l__Type : enum*\ldescription : text\lpanelType : xref-&gt;ontologyTerm\lnumberOfIndividuals : int*\lspecies : xref-&gt;species\lindividuals : mref-&gt;individual\lcentralIdentifier : xref-&gt;ontologyTerm\llabel : string\laccession : string\laccessionVersion : string\lcomposition : text\ltotalNumberOfIndividuals : int\lnumberOfSexMale : int\lnumberOfSexFemale : int\lnumberOfSexUnknown : int\lnumberOfProbands : int\lnumberOfParents : int\lmodeOfRecruitment : string\ldiagnosisAgeRange : string\ldiagnosisPeriod : string\lsamplingAgeRange : string\lsamplingPeriod : string\lpopulationInfo : string\lgeographicRegionInfo : string\lethnicityInfo : string\lbirthPlaceInfo : string\ladmixtureInfo : string\lenvironmentInfo : text\lsourceOfDNA : string\ldNAsArePooled : enum*\ldNAsAreWGA : enum*\l}"
+                ]
+                "AssayedPanel" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{AssayedPanel\n implements Identifiable\n extends Panel|id : int*\lidentifier : string*\lname : string\l__Type : enum*\ldescription : text\lpanelType : xref-&gt;ontologyTerm\lnumberOfIndividuals : int*\lspecies : xref-&gt;species\lindividuals : mref-&gt;individual\ltotalNumberOfIndividuals : int\lnumberOfSexMale : int\lnumberOfSexFemale : int\lnumberOfSexUnknown : int\lnumberOfProbands : int\lnumberOfParents : int\l}"
+                ]
+                "GWASExperiment" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{GWASExperiment\n implements Identifiable\n extends Experiment|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\lstudy : xref-&gt;study*\ldesign : string\lexperimentType : xref-&gt;ontologyTerm*\ltotalMarkersTested : int\ltotalMarkersImported : int\lobjective : text\loutcome : text\lcomments : text\lindividualDataStatement : text\ltimeCreated : datetime*\lassayedPanels : mref-&gt;panel*\ldataSets : mref-&gt;dataSet*\l}"
+                ]
+                "UsedMarkerSet" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{UsedMarkerSet\n extends ObservableFeature|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lunit : xref-&gt;ontologyTerm\ldataType : enum*\ltemporal : bool*\lexperimentID : xref-&gt;experiment\lmarkerIdentifier : string\l}"
+                ]
+                "Significance" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Significance\n implements Autoid\n extends DataSet|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lprotocolUsed : xref-&gt;protocol\lstartTime : datetime*\lendTime : datetime\lusedmarkersetID : xref-&gt;usedMarkerSet*\lnegLogPValue : decimal\lunadjustedPValue : text\ladjustedPValue : decimal\l}"
+                ]
+                "EffectSize" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{EffectSize\n extends DataSet|id : int*\lidentifier : string*\lname : string*\l__Type : enum*\ldescription : text\lprotocolUsed : xref-&gt;protocol\lstartTime : datetime*\lendTime : datetime\lusedMarkerSetID : xref-&gt;usedMarkerSet\llower95Bound : decimal*\lupper95Bound : decimal*\lstdError : decimal*\l}"
+                ]
+                "SelectionCriteria" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{SelectionCriteria\n implements Autoid|id : int*\lsourcePanel : xref-&gt;panel*\ltargetPanel : xref-&gt;panel*\lnumberOfIndividuals : int*\ldetails : text*\l}"
+                ]
+/*        }  */
+
+/*interface relationships*/
+        edge [
+                arrowhead = "empty"
+                color = "#808080"
+        ]
+
+/*inheritance relationships*/
+        edge [
+                arrowhead = "empty"
+                color = "black"
+        ]
+        
+        "FrequencyCluster" -> "DataSet"
+        "GenotypeFrequency" -> "DataSet"
+        "AlleleFrequency" -> "DataSet"
+        "PhenotypeProperty" -> "ObservableFeature"
+        "PhenotypeMethod" -> "DataSet"
+        "PhenotypeValue" -> "ObservedValue"
+        "SamplePanel" -> "Panel"
+        "AssayedPanel" -> "Panel"
+        "GWASExperiment" -> "Experiment"
+        "UsedMarkerSet" -> "ObservableFeature"
+        "Significance" -> "DataSet"
+        "EffectSize" -> "DataSet"
+
+/*one to many 'xref' foreign key relationships*/
+        edge [
+                arrowhead = "open"
+                arrowsize = 0.6
+        ]
+		"StudyDetails" -> "Study" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"StudyDetails" -> "Citation" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"FrequencyCluster" -> "DataSet" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"FrequencyCluster" -> "UsedMarkerSet" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"GenotypeFrequency" -> "FrequencyCluster" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"AlleleFrequency" -> "FrequencyCluster" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"PhenotypeMethod" -> "Study" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"PhenotypeMethod" -> "PhenotypeProperty" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"PhenotypeValue" -> "PhenotypeProperty" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"SamplePanel" -> "OntologyTerm" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"UsedMarkerSet" -> "Experiment" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Significance" -> "UsedMarkerSet" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"EffectSize" -> "UsedMarkerSet" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"SelectionCriteria" -> "Panel" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"SelectionCriteria" -> "Panel" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+        
+        
+/*many to many 'mref' foreign key relationships*/
+        edge [
+             arrowtail = "open"
+             color = "black"
+             headlabel = "*"
+             taillabel = "*"
+             arrowsize = 0.6
+        ]
+		"StudyDetails" -> "Citation"[
+			]
+}

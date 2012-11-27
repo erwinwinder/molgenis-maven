@@ -1,0 +1,1501 @@
+digraph G {
+		compound = true
+		fontname = "Bitstream Vera Sans"
+		fontsize = 8
+		pagedir="TB"
+		rankdir="BT"
+		bgcolor = "lightyellow"  
+		labelfloat = "true"
+		mode = "hier"
+		overlap = "false"
+		splines = "true"
+		layers = "1:2"
+		clusterrank = "local"
+		outputorder="edgesfirst"
+		orientation = "portrait"
+
+        node [
+			fontname = "Arial"
+            fontsize = 8
+            shape = "record"
+            color = "#808080"
+            style="filled"
+            fillcolor = "white"
+            layer = "2"
+            colorscheme = pastel19
+        ]
+
+        edge [
+                fontname = "Bitstream Vera Sans"
+                fontsize = 8
+                layer = "1"
+        ]
+
+/* entities outside modules*/
+               "MolgenisFile" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{MolgenisFile}"
+                ]
+
+               "RuntimeProperty" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{RuntimeProperty}"
+                ]
+
+               "Authorizable" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial-Italic"
+			        	fontcolor = "dimgrey"
+			        	color = "dimgrey"
+                
+                        label = "{Authorizable}"
+                ]
+
+               "Characteristic" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Characteristic}"
+                ]
+
+               "ObservationTarget" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{ObservationTarget}"
+                ]
+
+               "ObservableFeature" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{ObservableFeature}"
+                ]
+
+               "Category" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Category}"
+                ]
+
+               "Protocol" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Protocol}"
+                ]
+
+               "DataSet" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{DataSet}"
+                ]
+
+               "ObservationSet" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{ObservationSet}"
+                ]
+
+               "ObservedValue" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{ObservedValue}"
+                ]
+
+               "Species" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Species}"
+                ]
+
+               "Individual" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Individual}"
+                ]
+
+               "Panel" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Panel}"
+                ]
+
+               "PanelSource" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PanelSource}"
+                ]
+
+               "Ontology" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Ontology}"
+                ]
+
+               "OntologyTerm" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{OntologyTerm}"
+                ]
+
+               "Accession" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Accession}"
+                ]
+
+               "BioSequence" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial-Italic"
+			        	fontcolor = "dimgrey"
+			        	color = "dimgrey"
+                
+                        label = "{BioSequence}"
+                ]
+
+               "GdnaPosition" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial-Italic"
+			        	fontcolor = "dimgrey"
+			        	color = "dimgrey"
+                
+                        label = "{GdnaPosition}"
+                ]
+
+               "CdnaPosition" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial-Italic"
+			        	fontcolor = "dimgrey"
+			        	color = "dimgrey"
+                
+                        label = "{CdnaPosition}"
+                ]
+
+               "AaPosition" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial-Italic"
+			        	fontcolor = "dimgrey"
+			        	color = "dimgrey"
+                
+                        label = "{AaPosition}"
+                ]
+
+               "Genome" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Genome}"
+                ]
+
+               "Chromosome" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Chromosome}"
+                ]
+
+               "Gene" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Gene}"
+                ]
+
+               "Protein" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Protein}"
+                ]
+
+               "ProteinDomain" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{ProteinDomain}"
+                ]
+
+               "Exon" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Exon}"
+                ]
+
+               "Variant" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Variant}"
+                ]
+
+               "Study" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Study}"
+                ]
+
+               "Experiment" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Experiment}"
+                ]
+
+               "Institute" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Institute}"
+                ]
+
+               "Person" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Person}"
+                ]
+
+               "Citation" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Citation}"
+                ]
+
+               "Contribution" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Contribution}"
+                ]
+
+               "Submission" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Submission}"
+                ]
+
+               "Investigation" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Investigation}"
+                ]
+
+               "StudyDetails" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{StudyDetails}"
+                ]
+
+               "FrequencyCluster" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{FrequencyCluster}"
+                ]
+
+               "GenotypeFrequency" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{GenotypeFrequency}"
+                ]
+
+               "AlleleFrequency" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{AlleleFrequency}"
+                ]
+
+               "PhenotypeProperty" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PhenotypeProperty}"
+                ]
+
+               "PhenotypeMethod" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PhenotypeMethod}"
+                ]
+
+               "PhenotypeValue" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PhenotypeValue}"
+                ]
+
+               "SamplePanel" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{SamplePanel}"
+                ]
+
+               "AssayedPanel" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{AssayedPanel}"
+                ]
+
+               "GWASExperiment" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{GWASExperiment}"
+                ]
+
+               "UsedMarkerSet" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{UsedMarkerSet}"
+                ]
+
+               "Significance" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Significance}"
+                ]
+
+               "EffectSize" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{EffectSize}"
+                ]
+
+               "SelectionCriteria" [
+                	    style = "filled"
+                	    fillcolor =  "white"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{SelectionCriteria}"
+                ]
+
+/*entities inside modules*/
+/*        subgraph cluster_0 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.core"
+                labelloc = bottom
+                colorscheme = pastel19
+                fillcolor = 1
+                style="filled"*/
+
+                "Autoid" [
+                	    style = "filled"
+                	    fillcolor =  "1"
+			        	fontname = "Arial-Italic"
+			        	fontcolor = "dimgrey"
+			        	color = "dimgrey"
+                
+                        label = "{Autoid}"
+                ]
+                "Identifiable" [
+                	    style = "filled"
+                	    fillcolor =  "1"
+			        	fontname = "Arial-Italic"
+			        	fontcolor = "dimgrey"
+			        	color = "dimgrey"
+                
+                        label = "{Identifiable}"
+                ]
+                "MolgenisEntity" [
+                	    style = "filled"
+                	    fillcolor =  "1"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{MolgenisEntity}"
+                ]
+                "MolgenisFile" [
+                	    style = "filled"
+                	    fillcolor =  "1"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{MolgenisFile}"
+                ]
+                "RuntimeProperty" [
+                	    style = "filled"
+                	    fillcolor =  "1"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{RuntimeProperty}"
+                ]
+/*        }  */
+/*        subgraph cluster_1 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.auth"
+                labelloc = bottom
+                colorscheme = pastel19
+                fillcolor = 2
+                style="filled"*/
+
+                "MolgenisRole" [
+                	    style = "filled"
+                	    fillcolor =  "2"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{MolgenisRole}"
+                ]
+                "MolgenisGroup" [
+                	    style = "filled"
+                	    fillcolor =  "2"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{MolgenisGroup}"
+                ]
+                "MolgenisUser" [
+                	    style = "filled"
+                	    fillcolor =  "2"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{MolgenisUser}"
+                ]
+                "MolgenisRoleGroupLink" [
+                	    style = "filled"
+                	    fillcolor =  "2"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{MolgenisRoleGroupLink}"
+                ]
+                "MolgenisPermission" [
+                	    style = "filled"
+                	    fillcolor =  "2"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{MolgenisPermission}"
+                ]
+                "Authorizable" [
+                	    style = "filled"
+                	    fillcolor =  "2"
+			        	fontname = "Arial-Italic"
+			        	fontcolor = "dimgrey"
+			        	color = "dimgrey"
+                
+                        label = "{Authorizable}"
+                ]
+/*        }  */
+/*        subgraph cluster_2 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.observ"
+                labelloc = bottom
+                colorscheme = pastel19
+                fillcolor = 3
+                style="filled"*/
+
+                "Characteristic" [
+                	    style = "filled"
+                	    fillcolor =  "3"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Characteristic}"
+                ]
+                "ObservationTarget" [
+                	    style = "filled"
+                	    fillcolor =  "3"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{ObservationTarget}"
+                ]
+                "ObservableFeature" [
+                	    style = "filled"
+                	    fillcolor =  "3"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{ObservableFeature}"
+                ]
+                "Category" [
+                	    style = "filled"
+                	    fillcolor =  "3"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Category}"
+                ]
+                "Protocol" [
+                	    style = "filled"
+                	    fillcolor =  "3"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Protocol}"
+                ]
+                "DataSet" [
+                	    style = "filled"
+                	    fillcolor =  "3"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{DataSet}"
+                ]
+                "ObservationSet" [
+                	    style = "filled"
+                	    fillcolor =  "3"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{ObservationSet}"
+                ]
+                "ObservedValue" [
+                	    style = "filled"
+                	    fillcolor =  "3"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{ObservedValue}"
+                ]
+/*        }  */
+/*        subgraph cluster_3 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.observ.target"
+                labelloc = bottom
+                colorscheme = pastel19
+                fillcolor = 4
+                style="filled"*/
+
+                "Species" [
+                	    style = "filled"
+                	    fillcolor =  "4"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Species}"
+                ]
+                "Individual" [
+                	    style = "filled"
+                	    fillcolor =  "4"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Individual}"
+                ]
+                "Panel" [
+                	    style = "filled"
+                	    fillcolor =  "4"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Panel}"
+                ]
+                "PanelSource" [
+                	    style = "filled"
+                	    fillcolor =  "4"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PanelSource}"
+                ]
+                "Ontology" [
+                	    style = "filled"
+                	    fillcolor =  "4"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Ontology}"
+                ]
+                "OntologyTerm" [
+                	    style = "filled"
+                	    fillcolor =  "4"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{OntologyTerm}"
+                ]
+                "Accession" [
+                	    style = "filled"
+                	    fillcolor =  "4"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Accession}"
+                ]
+/*        }  */
+/*        subgraph cluster_4 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.variant"
+                labelloc = bottom
+                colorscheme = pastel19
+                fillcolor = 5
+                style="filled"*/
+
+                "BioSequence" [
+                	    style = "filled"
+                	    fillcolor =  "5"
+			        	fontname = "Arial-Italic"
+			        	fontcolor = "dimgrey"
+			        	color = "dimgrey"
+                
+                        label = "{BioSequence}"
+                ]
+                "GdnaPosition" [
+                	    style = "filled"
+                	    fillcolor =  "5"
+			        	fontname = "Arial-Italic"
+			        	fontcolor = "dimgrey"
+			        	color = "dimgrey"
+                
+                        label = "{GdnaPosition}"
+                ]
+                "CdnaPosition" [
+                	    style = "filled"
+                	    fillcolor =  "5"
+			        	fontname = "Arial-Italic"
+			        	fontcolor = "dimgrey"
+			        	color = "dimgrey"
+                
+                        label = "{CdnaPosition}"
+                ]
+                "AaPosition" [
+                	    style = "filled"
+                	    fillcolor =  "5"
+			        	fontname = "Arial-Italic"
+			        	fontcolor = "dimgrey"
+			        	color = "dimgrey"
+                
+                        label = "{AaPosition}"
+                ]
+                "Genome" [
+                	    style = "filled"
+                	    fillcolor =  "5"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Genome}"
+                ]
+                "Chromosome" [
+                	    style = "filled"
+                	    fillcolor =  "5"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Chromosome}"
+                ]
+                "Gene" [
+                	    style = "filled"
+                	    fillcolor =  "5"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Gene}"
+                ]
+                "Protein" [
+                	    style = "filled"
+                	    fillcolor =  "5"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Protein}"
+                ]
+                "ProteinDomain" [
+                	    style = "filled"
+                	    fillcolor =  "5"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{ProteinDomain}"
+                ]
+                "Exon" [
+                	    style = "filled"
+                	    fillcolor =  "5"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Exon}"
+                ]
+                "Variant" [
+                	    style = "filled"
+                	    fillcolor =  "5"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Variant}"
+                ]
+/*        }  */
+/*        subgraph cluster_5 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.organization"
+                labelloc = bottom
+                colorscheme = pastel19
+                fillcolor = 6
+                style="filled"*/
+
+                "Study" [
+                	    style = "filled"
+                	    fillcolor =  "6"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Study}"
+                ]
+                "Experiment" [
+                	    style = "filled"
+                	    fillcolor =  "6"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Experiment}"
+                ]
+                "Institute" [
+                	    style = "filled"
+                	    fillcolor =  "6"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Institute}"
+                ]
+                "Person" [
+                	    style = "filled"
+                	    fillcolor =  "6"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Person}"
+                ]
+                "Citation" [
+                	    style = "filled"
+                	    fillcolor =  "6"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Citation}"
+                ]
+                "Contribution" [
+                	    style = "filled"
+                	    fillcolor =  "6"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Contribution}"
+                ]
+                "Submission" [
+                	    style = "filled"
+                	    fillcolor =  "6"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Submission}"
+                ]
+/*        }  */
+/*        subgraph cluster_6 {
+        		rankdir = "TB"
+        		pagedir = "TB"
+                label = "org.molgenis.gwascentral"
+                labelloc = bottom
+                colorscheme = pastel19
+                fillcolor = 7
+                style="filled"*/
+
+                "Investigation" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Investigation}"
+                ]
+                "StudyDetails" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{StudyDetails}"
+                ]
+                "FrequencyCluster" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{FrequencyCluster}"
+                ]
+                "GenotypeFrequency" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{GenotypeFrequency}"
+                ]
+                "AlleleFrequency" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{AlleleFrequency}"
+                ]
+                "PhenotypeProperty" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PhenotypeProperty}"
+                ]
+                "PhenotypeMethod" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PhenotypeMethod}"
+                ]
+                "PhenotypeValue" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{PhenotypeValue}"
+                ]
+                "SamplePanel" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{SamplePanel}"
+                ]
+                "AssayedPanel" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{AssayedPanel}"
+                ]
+                "GWASExperiment" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{GWASExperiment}"
+                ]
+                "UsedMarkerSet" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{UsedMarkerSet}"
+                ]
+                "Significance" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{Significance}"
+                ]
+                "EffectSize" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{EffectSize}"
+                ]
+                "SelectionCriteria" [
+                	    style = "filled"
+                	    fillcolor =  "7"
+			        	fontname = "Arial"
+			        	fontcolor = "black"
+			        	color = "black"
+                
+                        label = "{SelectionCriteria}"
+                ]
+/*        }  */
+
+/*inheritance relationships*/
+        edge [
+                arrowhead = "empty"
+                color = "black"
+        ]
+        "MolgenisGroup" -> "MolgenisRole"
+        "ObservationTarget" -> "Characteristic"
+        "ObservableFeature" -> "Characteristic"
+        "Category" -> "Characteristic"
+        "Protocol" -> "Characteristic"
+        "DataSet" -> "Characteristic"
+        "Species" -> "OntologyTerm"
+        "Individual" -> "ObservationTarget"
+        "Panel" -> "ObservationTarget"
+        "Accession" -> "OntologyTerm"
+        "Genome" -> "Characteristic"
+        "Chromosome" -> "Characteristic"
+        "Gene" -> "Characteristic"
+        "Protein" -> "Characteristic"
+        "ProteinDomain" -> "Characteristic"
+        "Exon" -> "Characteristic"
+        "Variant" -> "Characteristic"
+        "FrequencyCluster" -> "DataSet"
+        "GenotypeFrequency" -> "DataSet"
+        "AlleleFrequency" -> "DataSet"
+        "PhenotypeProperty" -> "ObservableFeature"
+        "PhenotypeMethod" -> "DataSet"
+        "PhenotypeValue" -> "ObservedValue"
+        "SamplePanel" -> "Panel"
+        "AssayedPanel" -> "Panel"
+        "GWASExperiment" -> "Experiment"
+        "UsedMarkerSet" -> "ObservableFeature"
+        "Significance" -> "DataSet"
+        "EffectSize" -> "DataSet"
+
+/*interface relationships*/
+        edge [
+                color = "#808080"
+        ]
+    	"Identifiable" -> "Autoid"
+    	"MolgenisEntity" -> "Autoid"
+    	"MolgenisFile" -> "Identifiable"
+    	"RuntimeProperty" -> "Identifiable"
+    	"MolgenisRole" -> "Autoid"
+    	"MolgenisUser" -> "Autoid"
+    	"MolgenisRoleGroupLink" -> "Identifiable"
+    	"MolgenisPermission" -> "Autoid"
+    	"Characteristic" -> "Identifiable"
+    	"ObservationSet" -> "Autoid"
+    	"ObservedValue" -> "Autoid"
+    	"PanelSource" -> "Autoid"
+    	"Ontology" -> "Identifiable"
+    	"OntologyTerm" -> "Identifiable"
+    	"Genome" -> "BioSequence"
+    	"Chromosome" -> "BioSequence"
+    	"Gene" -> "GdnaPosition"
+    	"Gene" -> "BioSequence"
+    	"Protein" -> "CdnaPosition"
+    	"Protein" -> "BioSequence"
+    	"ProteinDomain" -> "CdnaPosition"
+    	"ProteinDomain" -> "GdnaPosition"
+    	"Exon" -> "CdnaPosition"
+    	"Exon" -> "GdnaPosition"
+    	"Variant" -> "GdnaPosition"
+    	"Variant" -> "CdnaPosition"
+    	"Variant" -> "AaPosition"
+    	"Study" -> "Identifiable"
+    	"Experiment" -> "Identifiable"
+    	"Institute" -> "Autoid"
+    	"Person" -> "Autoid"
+    	"Citation" -> "Identifiable"
+    	"Contribution" -> "Identifiable"
+    	"Submission" -> "Identifiable"
+    	"Investigation" -> "Identifiable"
+    	"StudyDetails" -> "Autoid"
+    	"PhenotypeProperty" -> "Identifiable"
+    	"PhenotypeMethod" -> "Identifiable"
+    	"PhenotypeValue" -> "Identifiable"
+    	"SamplePanel" -> "Identifiable"
+    	"AssayedPanel" -> "Identifiable"
+    	"GWASExperiment" -> "Identifiable"
+    	"Significance" -> "Autoid"
+    	"SelectionCriteria" -> "Autoid"
+
+/*one to many 'xref' foreign key relationships*/
+        edge [
+                arrowhead = "open"
+                arrowsize = 0.6
+                color = "black"
+        ]
+		"Authorizable" -> "MolgenisRole" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Authorizable" -> "MolgenisRole" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Authorizable" -> "MolgenisRole" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"ObservableFeature" -> "OntologyTerm" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Category" -> "ObservableFeature" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"Protocol" -> "OntologyTerm" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"DataSet" -> "Protocol" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"ObservationSet" -> "DataSet" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"ObservationSet" -> "Characteristic" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"ObservedValue" -> "ObservationSet" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"ObservedValue" -> "ObservableFeature" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"ObservedValue" -> "Characteristic" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Individual" -> "Individual" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Individual" -> "Individual" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Panel" -> "OntologyTerm" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Panel" -> "Species" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"PanelSource" -> "Panel" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"PanelSource" -> "Panel" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"OntologyTerm" -> "Ontology" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"GdnaPosition" -> "Chromosome" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"CdnaPosition" -> "Gene" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"AaPosition" -> "Protein" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Genome" -> "Species" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Chromosome" -> "Genome" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"Gene" -> "Chromosome" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Protein" -> "Gene" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"ProteinDomain" -> "Gene" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"ProteinDomain" -> "Chromosome" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Exon" -> "Gene" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Exon" -> "Chromosome" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Variant" -> "OntologyTerm" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Variant" -> "Chromosome" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Variant" -> "Gene" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Variant" -> "Protein" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Study" -> "Person" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Study" -> "Investigation" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"Experiment" -> "Study" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"Experiment" -> "OntologyTerm" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"Person" -> "Institute" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Person" -> "OntologyTerm" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Citation" -> "OntologyTerm" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Contribution" -> "Person" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"Contribution" -> "Submission" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"Submission" -> "Study" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"StudyDetails" -> "Study" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"StudyDetails" -> "Citation" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"FrequencyCluster" -> "DataSet" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"FrequencyCluster" -> "UsedMarkerSet" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"GenotypeFrequency" -> "FrequencyCluster" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"AlleleFrequency" -> "FrequencyCluster" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"PhenotypeMethod" -> "Study" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"PhenotypeMethod" -> "PhenotypeProperty" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"PhenotypeValue" -> "PhenotypeProperty" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"SamplePanel" -> "OntologyTerm" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"UsedMarkerSet" -> "Experiment" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"Significance" -> "UsedMarkerSet" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"EffectSize" -> "UsedMarkerSet" [
+			headlabel = "0..1"
+			taillabel = "*"
+		]
+		"SelectionCriteria" -> "Panel" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+		"SelectionCriteria" -> "Panel" [
+			headlabel = "1"
+			taillabel = "*"
+		]
+        
+        
+/*many to many 'mref' foreign key relationships*/
+        edge [
+             arrowtail = "open"
+             color = "black"
+             headlabel = "*"
+             taillabel = "*"
+             arrowsize = 0.6
+             constraint = false
+        ]
+		"Protocol" -> "Protocol"[
+			]
+		"ObservableFeature" -> "Protocol"[
+			]
+		"Individual" -> "Panel"[
+			]
+		"Panel" -> "Experiment"[
+			]
+		"DataSet" -> "Experiment"[
+			]
+		"Institute" -> "Person"[
+			]
+		"OntologyTerm" -> "Citation"[
+			]
+		"Citation" -> "StudyDetails"[
+			]
+}
