@@ -54,6 +54,7 @@ public class TestDatabaseGen extends Generator
 		templateArgs.put("entities", entityList);
 		templateArgs.put("package", packageName);
 		templateArgs.put("options", options);
+		templateArgs.put("app", getAppPackage());
 
 		OutputStream targetOut = new FileOutputStream(target);
 		template.process(templateArgs, new OutputStreamWriter(targetOut, Charset.forName("UTF-8")));

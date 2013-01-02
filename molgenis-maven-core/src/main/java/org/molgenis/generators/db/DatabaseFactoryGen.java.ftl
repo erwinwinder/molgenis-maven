@@ -32,13 +32,13 @@ public class DatabaseFactory
 	@Deprecated
 	public static Database create(Connection conn) throws DatabaseException
 	{
-		return new app.<#if databaseImp == "jpa">Jpa<#else>JDBC</#if>Database(conn);
+		return new ${package}.<#if databaseImp == "jpa">Jpa<#else>JDBC</#if>Database(conn);
 	}
 
 <#if databaseImp == "jpa">
     private static Database createJpaDatabase(String propertiesFilePath) throws DatabaseException {
         try {
-            return new app.JpaDatabase(propertiesFilePath); 
+            return new ${package}.JpaDatabase(propertiesFilePath); 
         } catch (Exception ex) {
             throw new DatabaseException(ex);
         }
@@ -46,7 +46,7 @@ public class DatabaseFactory
     
     private static Database createJpaDatabase() throws DatabaseException {
         try {
-        	return new app.JpaDatabase();
+        	return new ${package}.JpaDatabase();
         } catch (Exception ex) {
             throw new DatabaseException(ex);
         }
@@ -57,7 +57,7 @@ public class DatabaseFactory
         public static Database createInsecure(DataSource data_src, File file_src) throws DatabaseException {
 <#if databaseImp == "jdbc">
             try {
-                return new app.JDBCDatabase(data_src, file_src);
+                return new ${package}.JDBCDatabase(data_src, file_src);
             } catch (Exception ex) {
                 throw new DatabaseException(ex);
             }
@@ -70,7 +70,7 @@ public class DatabaseFactory
         public static Database createInsecure() throws DatabaseException {
 <#if databaseImp == "jdbc">
             try {
-                return new app.JDBCDatabase();
+                return new ${package}.JDBCDatabase();
             } catch (Exception ex) {
                 throw new DatabaseException(ex);
             }
@@ -212,7 +212,7 @@ public class DatabaseFactory
 
 	public static Database create(Map<String, Object> configOverrides) throws DatabaseException {
 <#if databaseImp == "jpa">
-		return new app.JpaDatabase(configOverrides);
+		return new ${package}.JpaDatabase(configOverrides);
 <#else>
 		 try {
             return new ${package}.JDBCDatabase();            

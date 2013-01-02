@@ -38,7 +38,7 @@ public class ExcelImportGen extends MySqlCreateClassPerTableGen
 		entityList = MolgenisModel.sortEntitiesByDependency(entityList, model); // side
 																				// effect?
 
-		File target = new File(this.getSourcePath(options) + APP_DIR + "/ExcelImport.java");
+		File target = new File(this.getSourcePath(options) + getAppDir() + "/ExcelImport.java");
 		boolean created = target.getParentFile().mkdirs();
 		if (!created && !target.getParentFile().exists())
 		{
@@ -47,7 +47,7 @@ public class ExcelImportGen extends MySqlCreateClassPerTableGen
 
 		templateArgs.put("model", model);
 		templateArgs.put("entities", entityList);
-		templateArgs.put("package", APP_DIR);
+		templateArgs.put("package", getAppPackage());
 		OutputStream targetOut = new FileOutputStream(target);
 		template.process(templateArgs, new OutputStreamWriter(targetOut, Charset.forName("UTF-8")));
 		targetOut.close();

@@ -6,7 +6,7 @@
 	<!-- FrontController mapping for Tomcat -->
 	<servlet>
 		<servlet-name>FrontController</servlet-name>
-		<servlet-class>app.servlet.FrontController</servlet-class>
+		<servlet-class>org.molgenis.omx.servlet.FrontController</servlet-class>
 	</servlet>
 
 	<servlet-mapping>

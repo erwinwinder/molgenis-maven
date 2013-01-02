@@ -5,7 +5,7 @@
 <#--         START OF THE OUTPUT                                       ##-->
 <#--                                                                   ##-->
 <#--#####################################################################-->
-/* File:        app/JUnitTest.java
+/* File:        ${app}/JUnitTest.java
  * Copyright:   GBIC 2000-${year?c}, all rights reserved
  * Date:        ${date}
  * 
@@ -17,9 +17,9 @@
 
 package ${package};
 
-import app.DatabaseFactory;
+import ${app}.DatabaseFactory;
 <#if databaseImp != 'jpa'>	
-import app.JDBCDatabase;
+import ${app}.JDBCDatabase;
 <#else>
 import javax.persistence.*;
 import org.molgenis.framework.db.jpa.JpaDatabase;

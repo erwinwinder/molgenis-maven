@@ -16,11 +16,10 @@ import org.molgenis.observ.DataSet;
 import org.molgenis.observ.ObservableFeature;
 import org.molgenis.observ.target.Individual;
 import org.molgenis.omicsconnect.dataset.DataSetTable;
+import org.molgenis.omx.DatabaseFactory;
 import org.molgenis.util.Tuple;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import app.DatabaseFactory;
 
 public class DataSetTableTest
 {

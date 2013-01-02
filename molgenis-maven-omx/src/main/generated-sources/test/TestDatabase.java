@@ -1,6 +1,6 @@
-/* File:        app/JUnitTest.java
- * Copyright:   GBIC 2000-2012, all rights reserved
- * Date:        November 26, 2012
+/* File:        org.molgenis.omx/JUnitTest.java
+ * Copyright:   GBIC 2000-2013, all rights reserved
+ * Date:        January 2, 2013
  * 
  * generator:   org.molgenis.generators.tests.TestDatabaseGen 4.0.0-testing
  *
@@ -10,8 +10,8 @@
 
 package test;
 
-import app.DatabaseFactory;
-import app.JDBCDatabase;
+import org.molgenis.omx.DatabaseFactory;
+import org.molgenis.omx.JDBCDatabase;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -1414,6 +1414,7 @@ public class TestDatabase
 				Query<MolgenisPermission> q2 = db.query(MolgenisPermission.class);
 				q2.equals("id",entity.getId());
 				List<MolgenisPermission> results = q2.find();
+				assertEquals(results.size(),1);
 				for(MolgenisPermission r: results)
 				{
 					assertEquals(r.getId(),entity.getId());
@@ -13403,6 +13404,7 @@ public class TestDatabase
 				Query<PanelSource> q2 = db.query(PanelSource.class);
 				q2.equals("id",entity.getId());
 				List<PanelSource> results = q2.find();
+				assertEquals(results.size(),1);
 				for(PanelSource r: results)
 				{
 					assertEquals(r.getId(),entity.getId());
@@ -13415,6 +13417,7 @@ public class TestDatabase
 				inList.add(entity.getId());
 				q2.in("id", inList);
 				List<PanelSource> results = q2.find();
+				assertEquals(results.size(),1);
 				for(PanelSource r: results)
 				{
 					assertEquals(r.getId(),entity.getId());
@@ -15863,6 +15866,7 @@ public class TestDatabase
 				Query<ObservedValue> q2 = db.query(ObservedValue.class);
 				q2.equals("id",entity.getId());
 				List<ObservedValue> results = q2.find();
+				assertEquals(results.size(),1);
 				for(ObservedValue r: results)
 				{
 					assertEquals(r.getId(),entity.getId());

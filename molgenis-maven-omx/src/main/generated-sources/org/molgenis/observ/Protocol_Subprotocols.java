@@ -1,5 +1,5 @@
 
-/* File:        org.molgenis/model/Protocol_subprotocols.java
+/* File:        org.molgenis.omx/model/Protocol_subprotocols.java
  * Generator:   org.molgenis.generators.DataTypeGen 4.0.0-testing
  *
  * THIS FILE HAS BEEN GENERATED, PLEASE DO NOT EDIT!

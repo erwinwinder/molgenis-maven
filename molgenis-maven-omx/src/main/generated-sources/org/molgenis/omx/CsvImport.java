@@ -1,124 +1,147 @@
 
-/* Date:        November 26, 2012
+/* Date:        January 2, 2013
  * 
- * generator:   org.molgenis.generators.excel.ExcelImportGen 4.0.0-testing
+ * generator:   org.molgenis.generators.csv.CsvImportGen 4.0.0-testing
  *
  * 
  * THIS FILE HAS BEEN GENERATED, PLEASE DO NOT EDIT!
  */
 
-package app;
+package org.molgenis.omx;
 
 import java.io.File;
-import java.util.ArrayList;
+//import java.io.IOException;
+//import java.util.ArrayList;
+//import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-
-import jxl.Workbook;
+//import java.util.Map;
+//import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 import org.molgenis.framework.db.Database;
-import org.molgenis.framework.db.DatabaseException;
-import org.molgenis.framework.db.CsvToDatabase.ImportResult;
 import org.molgenis.framework.db.Database.DatabaseAction;
+import org.molgenis.framework.db.DatabaseException;
+//import org.molgenis.framework.db.QueryRule;
+//import org.molgenis.framework.db.QueryRule.Operator;
 import org.molgenis.util.Tuple;
+//import org.molgenis.util.*;
+//import org.molgenis.util.CsvFileReader;
+//import org.molgenis.util.CsvReaderListener;
+//import org.molgenis.util.SimpleTuple;
 
-import org.molgenis.core.excel.MolgenisEntityExcelReader;
-import org.molgenis.core.excel.MolgenisFileExcelReader;
-import org.molgenis.core.excel.RuntimePropertyExcelReader;
-import org.molgenis.auth.excel.MolgenisRoleExcelReader;
-import org.molgenis.auth.excel.MolgenisGroupExcelReader;
-import org.molgenis.auth.excel.MolgenisUserExcelReader;
-import org.molgenis.auth.excel.MolgenisRoleGroupLinkExcelReader;
-import org.molgenis.auth.excel.MolgenisPermissionExcelReader;
-import org.molgenis.observ.excel.CharacteristicExcelReader;
-import org.molgenis.observ.excel.ObservationTargetExcelReader;
-import org.molgenis.observ.excel.ObservableFeatureExcelReader;
-import org.molgenis.observ.excel.CategoryExcelReader;
-import org.molgenis.observ.excel.ProtocolExcelReader;
-import org.molgenis.observ.excel.DataSetExcelReader;
-import org.molgenis.observ.excel.ObservationSetExcelReader;
-import org.molgenis.observ.excel.ObservedValueExcelReader;
-import org.molgenis.observ.target.excel.SpeciesExcelReader;
-import org.molgenis.observ.target.excel.IndividualExcelReader;
-import org.molgenis.observ.target.excel.PanelExcelReader;
-import org.molgenis.observ.target.excel.PanelSourceExcelReader;
-import org.molgenis.observ.target.excel.OntologyExcelReader;
-import org.molgenis.observ.target.excel.OntologyTermExcelReader;
-import org.molgenis.observ.target.excel.AccessionExcelReader;
-import org.molgenis.variant.excel.GenomeExcelReader;
-import org.molgenis.variant.excel.ChromosomeExcelReader;
-import org.molgenis.variant.excel.GeneExcelReader;
-import org.molgenis.variant.excel.ProteinExcelReader;
-import org.molgenis.variant.excel.ProteinDomainExcelReader;
-import org.molgenis.variant.excel.ExonExcelReader;
-import org.molgenis.variant.excel.VariantExcelReader;
-import org.molgenis.organization.excel.StudyExcelReader;
-import org.molgenis.organization.excel.ExperimentExcelReader;
-import org.molgenis.organization.excel.InstituteExcelReader;
-import org.molgenis.organization.excel.PersonExcelReader;
-import org.molgenis.organization.excel.CitationExcelReader;
-import org.molgenis.organization.excel.ContributionExcelReader;
-import org.molgenis.organization.excel.SubmissionExcelReader;
-import org.molgenis.gwascentral.excel.InvestigationExcelReader;
-import org.molgenis.gwascentral.excel.StudyDetailsExcelReader;
-import org.molgenis.gwascentral.excel.FrequencyClusterExcelReader;
-import org.molgenis.gwascentral.excel.GenotypeFrequencyExcelReader;
-import org.molgenis.gwascentral.excel.AlleleFrequencyExcelReader;
-import org.molgenis.gwascentral.excel.PhenotypePropertyExcelReader;
-import org.molgenis.gwascentral.excel.PhenotypeMethodExcelReader;
-import org.molgenis.gwascentral.excel.PhenotypeValueExcelReader;
-import org.molgenis.gwascentral.excel.SamplePanelExcelReader;
-import org.molgenis.gwascentral.excel.AssayedPanelExcelReader;
-import org.molgenis.gwascentral.excel.GWASExperimentExcelReader;
-import org.molgenis.gwascentral.excel.UsedMarkerSetExcelReader;
-import org.molgenis.gwascentral.excel.SignificanceExcelReader;
-import org.molgenis.gwascentral.excel.EffectSizeExcelReader;
-import org.molgenis.gwascentral.excel.SelectionCriteriaExcelReader;
-import org.molgenis.observ.excel.Protocol_SubprotocolsExcelReader;
-import org.molgenis.observ.excel.Protocol_FeaturesExcelReader;
-import org.molgenis.observ.target.excel.Panel_IndividualsExcelReader;
-import org.molgenis.organization.excel.Experiment_AssayedPanelsExcelReader;
-import org.molgenis.organization.excel.Experiment_DataSetsExcelReader;
-import org.molgenis.organization.excel.Person_AffiliateInstitutionsExcelReader;
-import org.molgenis.organization.excel.Citation_OntologyTermsExcelReader;
-import org.molgenis.gwascentral.excel.StudyDetails_OtherCitationsExcelReader;
+import org.molgenis.framework.db.CsvToDatabase.ImportResult;
 
-public class ExcelImport
+import org.molgenis.core.csv.MolgenisEntityCsvReader;
+import org.molgenis.core.csv.MolgenisFileCsvReader;
+import org.molgenis.core.csv.RuntimePropertyCsvReader;
+import org.molgenis.auth.csv.MolgenisRoleCsvReader;
+import org.molgenis.auth.csv.MolgenisGroupCsvReader;
+import org.molgenis.auth.csv.MolgenisUserCsvReader;
+import org.molgenis.auth.csv.MolgenisRoleGroupLinkCsvReader;
+import org.molgenis.auth.csv.MolgenisPermissionCsvReader;
+import org.molgenis.observ.csv.CharacteristicCsvReader;
+import org.molgenis.observ.csv.ObservationTargetCsvReader;
+import org.molgenis.observ.csv.ObservableFeatureCsvReader;
+import org.molgenis.observ.csv.CategoryCsvReader;
+import org.molgenis.observ.csv.ProtocolCsvReader;
+import org.molgenis.observ.csv.DataSetCsvReader;
+import org.molgenis.observ.csv.ObservationSetCsvReader;
+import org.molgenis.observ.csv.ObservedValueCsvReader;
+import org.molgenis.observ.target.csv.SpeciesCsvReader;
+import org.molgenis.observ.target.csv.IndividualCsvReader;
+import org.molgenis.observ.target.csv.PanelCsvReader;
+import org.molgenis.observ.target.csv.PanelSourceCsvReader;
+import org.molgenis.observ.target.csv.OntologyCsvReader;
+import org.molgenis.observ.target.csv.OntologyTermCsvReader;
+import org.molgenis.observ.target.csv.AccessionCsvReader;
+import org.molgenis.variant.csv.GenomeCsvReader;
+import org.molgenis.variant.csv.ChromosomeCsvReader;
+import org.molgenis.variant.csv.GeneCsvReader;
+import org.molgenis.variant.csv.ProteinCsvReader;
+import org.molgenis.variant.csv.ProteinDomainCsvReader;
+import org.molgenis.variant.csv.ExonCsvReader;
+import org.molgenis.variant.csv.VariantCsvReader;
+import org.molgenis.organization.csv.StudyCsvReader;
+import org.molgenis.organization.csv.ExperimentCsvReader;
+import org.molgenis.organization.csv.InstituteCsvReader;
+import org.molgenis.organization.csv.PersonCsvReader;
+import org.molgenis.organization.csv.CitationCsvReader;
+import org.molgenis.organization.csv.ContributionCsvReader;
+import org.molgenis.organization.csv.SubmissionCsvReader;
+import org.molgenis.gwascentral.csv.InvestigationCsvReader;
+import org.molgenis.gwascentral.csv.StudyDetailsCsvReader;
+import org.molgenis.gwascentral.csv.FrequencyClusterCsvReader;
+import org.molgenis.gwascentral.csv.GenotypeFrequencyCsvReader;
+import org.molgenis.gwascentral.csv.AlleleFrequencyCsvReader;
+import org.molgenis.gwascentral.csv.PhenotypePropertyCsvReader;
+import org.molgenis.gwascentral.csv.PhenotypeMethodCsvReader;
+import org.molgenis.gwascentral.csv.PhenotypeValueCsvReader;
+import org.molgenis.gwascentral.csv.SamplePanelCsvReader;
+import org.molgenis.gwascentral.csv.AssayedPanelCsvReader;
+import org.molgenis.gwascentral.csv.GWASExperimentCsvReader;
+import org.molgenis.gwascentral.csv.UsedMarkerSetCsvReader;
+import org.molgenis.gwascentral.csv.SignificanceCsvReader;
+import org.molgenis.gwascentral.csv.EffectSizeCsvReader;
+import org.molgenis.gwascentral.csv.SelectionCriteriaCsvReader;
+import org.molgenis.observ.csv.Protocol_SubprotocolsCsvReader;
+import org.molgenis.observ.csv.Protocol_FeaturesCsvReader;
+import org.molgenis.observ.target.csv.Panel_IndividualsCsvReader;
+import org.molgenis.organization.csv.Experiment_AssayedPanelsCsvReader;
+import org.molgenis.organization.csv.Experiment_DataSetsCsvReader;
+import org.molgenis.organization.csv.Person_AffiliateInstitutionsCsvReader;
+import org.molgenis.organization.csv.Citation_OntologyTermsCsvReader;
+import org.molgenis.gwascentral.csv.StudyDetails_OtherCitationsCsvReader;
+
+public class CsvImport
 {
-	static Logger logger = Logger.getLogger(ExcelImport.class.getSimpleName());
+	static int BATCH_SIZE = 10000;
+	static int SMALL_BATCH_SIZE = 2500;
+	static Logger logger = Logger.getLogger(CsvImport.class.getSimpleName());
 	
-	public static void importAll(File excelFile, Database db, Tuple defaults) throws Exception
+	/**wrapper to use int inside anonymous classes (requires final, so cannot update directly)*/
+	//FIXME move to value type elsewhere?
+	public static class IntegerWrapper
 	{
-		importAll(excelFile, db, defaults, null, DatabaseAction.ADD, "", true);
+		private int value;
+		
+		public IntegerWrapper(int value)
+		{
+			this.value = value;
+		}
+		public void set(int value)
+		{
+			this.value = value;
+		}
+		public int get()
+		{
+			return this.value;
+		}
 	}
 	
-	public static ImportResult importAll(File excelFile, Database db, Tuple defaults, List<String> components, DatabaseAction dbAction, String missingValue) throws Exception
+	public static ImportResult importAll(File directory, Database db, Tuple defaults) throws Exception
 	{
-		return importAll(excelFile, db, defaults, components, dbAction, missingValue, true);
+		return importAll(directory, db, defaults, true);
 	}
 	
-	public static void importAll(File excelFile, Database db, Tuple defaults, boolean useDbTransaction) throws Exception
+	public static ImportResult importAll(File directory, Database db, Tuple defaults, List<String> components, DatabaseAction dbAction, String missingValue) throws Exception
+	{
+		return importAll(directory, db, defaults, components, dbAction, missingValue, true);
+	}
+	
+	public static ImportResult importAll(File directory, Database db, Tuple defaults, boolean useDbTransaction) throws Exception
 	{
 		//set default missing value to ""
-		importAll(excelFile, db, defaults, null, DatabaseAction.ADD, "", useDbTransaction);
+		return importAll(directory, db, defaults, null, DatabaseAction.ADD, "", useDbTransaction);
 	}
 
-	public static ImportResult importAll(File excelFile, Database db, Tuple defaults, List<String> components, DatabaseAction dbAction, String missingValue, boolean useDbTransaction) throws Exception
+	/**
+	 * Csv import of whole database.
+	 * TODO: add filter parameters...
+	 */
+	public static ImportResult importAll(File directory, Database db, Tuple defaults, List<String> components, DatabaseAction dbAction, String missingValue, boolean useDbTransaction) throws Exception
 	{
-		//fixes the problem where, even though decimals have a "." they are still read as "," because of the locale!
-		//TODO: dangerous: entire application locale changes! but workbook locale settings don't seem to have an effect...
-		Locale saveTheDefault = Locale.getDefault();
-		Locale.setDefault(Locale.US);
-		
-		Workbook workbook = Workbook.getWorkbook(excelFile);
-		ArrayList<String> sheetNames = new ArrayList<String>();
-		for(String sheetName : workbook.getSheetNames()){
-			sheetNames.add(sheetName.toLowerCase());
-		}
-		
 		ImportResult result = new ImportResult();
-
+		boolean alreadyInTx = false;
 		try
 		{
 			if (useDbTransaction)
@@ -126,10 +149,9 @@ public class ExcelImport
 				if (!db.inTx())
 				{
 					db.beginTx();
-				}
-				else
-				{
-					throw new DatabaseException("Cannot continue ExcelImport: database already in transaction.");
+				}else{
+					alreadyInTx = true; 
+					//throw new DatabaseException("Cannot continue CsvImport: database already in transaction.");
 				}
 			}
 						
@@ -139,10 +161,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("experiment_datasets")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("experiment_datasets")){
-							count = new Experiment_DataSetsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("experiment_datasets")), defaults, dbAction, missingValue);
-						}
+						int count = new Experiment_DataSetsCsvReader().importCsv(db, new File(directory+"/experiment_datasets.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("experiment_datasets");
 						result.getMessages().put("experiment_datasets", "evaluated "+count+" experiment_datasets elements");
 					} catch (Exception e) {
@@ -154,10 +173,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("phenotypevalue")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("phenotypevalue")){
-							count = new PhenotypeValueExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("phenotypevalue")), defaults, dbAction, missingValue);
-						}
+						int count = new PhenotypeValueCsvReader().importCsv(db, new File(directory+"/phenotypevalue.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("phenotypevalue");
 						result.getMessages().put("phenotypevalue", "evaluated "+count+" phenotypevalue elements");
 					} catch (Exception e) {
@@ -169,10 +185,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("allelefrequency")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("allelefrequency")){
-							count = new AlleleFrequencyExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("allelefrequency")), defaults, dbAction, missingValue);
-						}
+						int count = new AlleleFrequencyCsvReader().importCsv(db, new File(directory+"/allelefrequency.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("allelefrequency");
 						result.getMessages().put("allelefrequency", "evaluated "+count+" allelefrequency elements");
 					} catch (Exception e) {
@@ -184,10 +197,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("genotypefrequency")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("genotypefrequency")){
-							count = new GenotypeFrequencyExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("genotypefrequency")), defaults, dbAction, missingValue);
-						}
+						int count = new GenotypeFrequencyCsvReader().importCsv(db, new File(directory+"/genotypefrequency.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("genotypefrequency");
 						result.getMessages().put("genotypefrequency", "evaluated "+count+" genotypefrequency elements");
 					} catch (Exception e) {
@@ -199,10 +209,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("frequencycluster")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("frequencycluster")){
-							count = new FrequencyClusterExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("frequencycluster")), defaults, dbAction, missingValue);
-						}
+						int count = new FrequencyClusterCsvReader().importCsv(db, new File(directory+"/frequencycluster.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("frequencycluster");
 						result.getMessages().put("frequencycluster", "evaluated "+count+" frequencycluster elements");
 					} catch (Exception e) {
@@ -214,10 +221,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("observedvalue")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("observedvalue")){
-							count = new ObservedValueExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("observedvalue")), defaults, dbAction, missingValue);
-						}
+						int count = new ObservedValueCsvReader().importCsv(db, new File(directory+"/observedvalue.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("observedvalue");
 						result.getMessages().put("observedvalue", "evaluated "+count+" observedvalue elements");
 					} catch (Exception e) {
@@ -229,10 +233,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("observationset")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("observationset")){
-							count = new ObservationSetExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("observationset")), defaults, dbAction, missingValue);
-						}
+						int count = new ObservationSetCsvReader().importCsv(db, new File(directory+"/observationset.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("observationset");
 						result.getMessages().put("observationset", "evaluated "+count+" observationset elements");
 					} catch (Exception e) {
@@ -244,10 +245,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("studydetails_othercitations")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("studydetails_othercitations")){
-							count = new StudyDetails_OtherCitationsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("studydetails_othercitations")), defaults, dbAction, missingValue);
-						}
+						int count = new StudyDetails_OtherCitationsCsvReader().importCsv(db, new File(directory+"/studydetails_othercitations.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("studydetails_othercitations");
 						result.getMessages().put("studydetails_othercitations", "evaluated "+count+" studydetails_othercitations elements");
 					} catch (Exception e) {
@@ -259,10 +257,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("citation_ontologyterms")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("citation_ontologyterms")){
-							count = new Citation_OntologyTermsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("citation_ontologyterms")), defaults, dbAction, missingValue);
-						}
+						int count = new Citation_OntologyTermsCsvReader().importCsv(db, new File(directory+"/citation_ontologyterms.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("citation_ontologyterms");
 						result.getMessages().put("citation_ontologyterms", "evaluated "+count+" citation_ontologyterms elements");
 					} catch (Exception e) {
@@ -274,10 +269,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("person_affiliateinstitutions")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("person_affiliateinstitutions")){
-							count = new Person_AffiliateInstitutionsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("person_affiliateinstitutions")), defaults, dbAction, missingValue);
-						}
+						int count = new Person_AffiliateInstitutionsCsvReader().importCsv(db, new File(directory+"/person_affiliateinstitutions.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("person_affiliateinstitutions");
 						result.getMessages().put("person_affiliateinstitutions", "evaluated "+count+" person_affiliateinstitutions elements");
 					} catch (Exception e) {
@@ -289,10 +281,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("experiment_assayedpanels")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("experiment_assayedpanels")){
-							count = new Experiment_AssayedPanelsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("experiment_assayedpanels")), defaults, dbAction, missingValue);
-						}
+						int count = new Experiment_AssayedPanelsCsvReader().importCsv(db, new File(directory+"/experiment_assayedpanels.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("experiment_assayedpanels");
 						result.getMessages().put("experiment_assayedpanels", "evaluated "+count+" experiment_assayedpanels elements");
 					} catch (Exception e) {
@@ -304,10 +293,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("panel_individuals")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("panel_individuals")){
-							count = new Panel_IndividualsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("panel_individuals")), defaults, dbAction, missingValue);
-						}
+						int count = new Panel_IndividualsCsvReader().importCsv(db, new File(directory+"/panel_individuals.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("panel_individuals");
 						result.getMessages().put("panel_individuals", "evaluated "+count+" panel_individuals elements");
 					} catch (Exception e) {
@@ -319,10 +305,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("protocol_features")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("protocol_features")){
-							count = new Protocol_FeaturesExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("protocol_features")), defaults, dbAction, missingValue);
-						}
+						int count = new Protocol_FeaturesCsvReader().importCsv(db, new File(directory+"/protocol_features.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("protocol_features");
 						result.getMessages().put("protocol_features", "evaluated "+count+" protocol_features elements");
 					} catch (Exception e) {
@@ -334,10 +317,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("protocol_subprotocols")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("protocol_subprotocols")){
-							count = new Protocol_SubprotocolsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("protocol_subprotocols")), defaults, dbAction, missingValue);
-						}
+						int count = new Protocol_SubprotocolsCsvReader().importCsv(db, new File(directory+"/protocol_subprotocols.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("protocol_subprotocols");
 						result.getMessages().put("protocol_subprotocols", "evaluated "+count+" protocol_subprotocols elements");
 					} catch (Exception e) {
@@ -349,10 +329,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("selectioncriteria")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("selectioncriteria")){
-							count = new SelectionCriteriaExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("selectioncriteria")), defaults, dbAction, missingValue);
-						}
+						int count = new SelectionCriteriaCsvReader().importCsv(db, new File(directory+"/selectioncriteria.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("selectioncriteria");
 						result.getMessages().put("selectioncriteria", "evaluated "+count+" selectioncriteria elements");
 					} catch (Exception e) {
@@ -364,10 +341,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("effectsize")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("effectsize")){
-							count = new EffectSizeExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("effectsize")), defaults, dbAction, missingValue);
-						}
+						int count = new EffectSizeCsvReader().importCsv(db, new File(directory+"/effectsize.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("effectsize");
 						result.getMessages().put("effectsize", "evaluated "+count+" effectsize elements");
 					} catch (Exception e) {
@@ -379,10 +353,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("significance")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("significance")){
-							count = new SignificanceExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("significance")), defaults, dbAction, missingValue);
-						}
+						int count = new SignificanceCsvReader().importCsv(db, new File(directory+"/significance.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("significance");
 						result.getMessages().put("significance", "evaluated "+count+" significance elements");
 					} catch (Exception e) {
@@ -394,10 +365,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("category")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("category")){
-							count = new CategoryExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("category")), defaults, dbAction, missingValue);
-						}
+						int count = new CategoryCsvReader().importCsv(db, new File(directory+"/category.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("category");
 						result.getMessages().put("category", "evaluated "+count+" category elements");
 					} catch (Exception e) {
@@ -409,10 +377,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("usedmarkerset")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("usedmarkerset")){
-							count = new UsedMarkerSetExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("usedmarkerset")), defaults, dbAction, missingValue);
-						}
+						int count = new UsedMarkerSetCsvReader().importCsv(db, new File(directory+"/usedmarkerset.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("usedmarkerset");
 						result.getMessages().put("usedmarkerset", "evaluated "+count+" usedmarkerset elements");
 					} catch (Exception e) {
@@ -424,10 +389,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("gwasexperiment")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("gwasexperiment")){
-							count = new GWASExperimentExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("gwasexperiment")), defaults, dbAction, missingValue);
-						}
+						int count = new GWASExperimentCsvReader().importCsv(db, new File(directory+"/gwasexperiment.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("gwasexperiment");
 						result.getMessages().put("gwasexperiment", "evaluated "+count+" gwasexperiment elements");
 					} catch (Exception e) {
@@ -439,10 +401,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("panelsource")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("panelsource")){
-							count = new PanelSourceExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("panelsource")), defaults, dbAction, missingValue);
-						}
+						int count = new PanelSourceCsvReader().importCsv(db, new File(directory+"/panelsource.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("panelsource");
 						result.getMessages().put("panelsource", "evaluated "+count+" panelsource elements");
 					} catch (Exception e) {
@@ -454,10 +413,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("assayedpanel")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("assayedpanel")){
-							count = new AssayedPanelExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("assayedpanel")), defaults, dbAction, missingValue);
-						}
+						int count = new AssayedPanelCsvReader().importCsv(db, new File(directory+"/assayedpanel.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("assayedpanel");
 						result.getMessages().put("assayedpanel", "evaluated "+count+" assayedpanel elements");
 					} catch (Exception e) {
@@ -469,10 +425,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("samplepanel")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("samplepanel")){
-							count = new SamplePanelExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("samplepanel")), defaults, dbAction, missingValue);
-						}
+						int count = new SamplePanelCsvReader().importCsv(db, new File(directory+"/samplepanel.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("samplepanel");
 						result.getMessages().put("samplepanel", "evaluated "+count+" samplepanel elements");
 					} catch (Exception e) {
@@ -484,10 +437,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("phenotypemethod")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("phenotypemethod")){
-							count = new PhenotypeMethodExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("phenotypemethod")), defaults, dbAction, missingValue);
-						}
+						int count = new PhenotypeMethodCsvReader().importCsv(db, new File(directory+"/phenotypemethod.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("phenotypemethod");
 						result.getMessages().put("phenotypemethod", "evaluated "+count+" phenotypemethod elements");
 					} catch (Exception e) {
@@ -499,10 +449,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("phenotypeproperty")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("phenotypeproperty")){
-							count = new PhenotypePropertyExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("phenotypeproperty")), defaults, dbAction, missingValue);
-						}
+						int count = new PhenotypePropertyCsvReader().importCsv(db, new File(directory+"/phenotypeproperty.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("phenotypeproperty");
 						result.getMessages().put("phenotypeproperty", "evaluated "+count+" phenotypeproperty elements");
 					} catch (Exception e) {
@@ -514,10 +461,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("studydetails")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("studydetails")){
-							count = new StudyDetailsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("studydetails")), defaults, dbAction, missingValue);
-						}
+						int count = new StudyDetailsCsvReader().importCsv(db, new File(directory+"/studydetails.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("studydetails");
 						result.getMessages().put("studydetails", "evaluated "+count+" studydetails elements");
 					} catch (Exception e) {
@@ -529,10 +473,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("contribution")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("contribution")){
-							count = new ContributionExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("contribution")), defaults, dbAction, missingValue);
-						}
+						int count = new ContributionCsvReader().importCsv(db, new File(directory+"/contribution.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("contribution");
 						result.getMessages().put("contribution", "evaluated "+count+" contribution elements");
 					} catch (Exception e) {
@@ -544,10 +485,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("submission")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("submission")){
-							count = new SubmissionExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("submission")), defaults, dbAction, missingValue);
-						}
+						int count = new SubmissionCsvReader().importCsv(db, new File(directory+"/submission.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("submission");
 						result.getMessages().put("submission", "evaluated "+count+" submission elements");
 					} catch (Exception e) {
@@ -559,10 +497,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("experiment")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("experiment")){
-							count = new ExperimentExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("experiment")), defaults, dbAction, missingValue);
-						}
+						int count = new ExperimentCsvReader().importCsv(db, new File(directory+"/experiment.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("experiment");
 						result.getMessages().put("experiment", "evaluated "+count+" experiment elements");
 					} catch (Exception e) {
@@ -574,10 +509,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("study")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("study")){
-							count = new StudyExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("study")), defaults, dbAction, missingValue);
-						}
+						int count = new StudyCsvReader().importCsv(db, new File(directory+"/study.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("study");
 						result.getMessages().put("study", "evaluated "+count+" study elements");
 					} catch (Exception e) {
@@ -589,10 +521,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("investigation")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("investigation")){
-							count = new InvestigationExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("investigation")), defaults, dbAction, missingValue);
-						}
+						int count = new InvestigationCsvReader().importCsv(db, new File(directory+"/investigation.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("investigation");
 						result.getMessages().put("investigation", "evaluated "+count+" investigation elements");
 					} catch (Exception e) {
@@ -604,10 +533,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("citation")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("citation")){
-							count = new CitationExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("citation")), defaults, dbAction, missingValue);
-						}
+						int count = new CitationCsvReader().importCsv(db, new File(directory+"/citation.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("citation");
 						result.getMessages().put("citation", "evaluated "+count+" citation elements");
 					} catch (Exception e) {
@@ -619,10 +545,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("person")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("person")){
-							count = new PersonExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("person")), defaults, dbAction, missingValue);
-						}
+						int count = new PersonCsvReader().importCsv(db, new File(directory+"/person.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("person");
 						result.getMessages().put("person", "evaluated "+count+" person elements");
 					} catch (Exception e) {
@@ -634,10 +557,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("institute")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("institute")){
-							count = new InstituteExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("institute")), defaults, dbAction, missingValue);
-						}
+						int count = new InstituteCsvReader().importCsv(db, new File(directory+"/institute.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("institute");
 						result.getMessages().put("institute", "evaluated "+count+" institute elements");
 					} catch (Exception e) {
@@ -649,10 +569,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("variant")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("variant")){
-							count = new VariantExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("variant")), defaults, dbAction, missingValue);
-						}
+						int count = new VariantCsvReader().importCsv(db, new File(directory+"/variant.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("variant");
 						result.getMessages().put("variant", "evaluated "+count+" variant elements");
 					} catch (Exception e) {
@@ -664,10 +581,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("exon")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("exon")){
-							count = new ExonExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("exon")), defaults, dbAction, missingValue);
-						}
+						int count = new ExonCsvReader().importCsv(db, new File(directory+"/exon.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("exon");
 						result.getMessages().put("exon", "evaluated "+count+" exon elements");
 					} catch (Exception e) {
@@ -679,10 +593,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("proteindomain")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("proteindomain")){
-							count = new ProteinDomainExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("proteindomain")), defaults, dbAction, missingValue);
-						}
+						int count = new ProteinDomainCsvReader().importCsv(db, new File(directory+"/proteindomain.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("proteindomain");
 						result.getMessages().put("proteindomain", "evaluated "+count+" proteindomain elements");
 					} catch (Exception e) {
@@ -694,10 +605,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("protein")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("protein")){
-							count = new ProteinExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("protein")), defaults, dbAction, missingValue);
-						}
+						int count = new ProteinCsvReader().importCsv(db, new File(directory+"/protein.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("protein");
 						result.getMessages().put("protein", "evaluated "+count+" protein elements");
 					} catch (Exception e) {
@@ -709,10 +617,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("gene")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("gene")){
-							count = new GeneExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("gene")), defaults, dbAction, missingValue);
-						}
+						int count = new GeneCsvReader().importCsv(db, new File(directory+"/gene.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("gene");
 						result.getMessages().put("gene", "evaluated "+count+" gene elements");
 					} catch (Exception e) {
@@ -724,10 +629,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("chromosome")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("chromosome")){
-							count = new ChromosomeExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("chromosome")), defaults, dbAction, missingValue);
-						}
+						int count = new ChromosomeCsvReader().importCsv(db, new File(directory+"/chromosome.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("chromosome");
 						result.getMessages().put("chromosome", "evaluated "+count+" chromosome elements");
 					} catch (Exception e) {
@@ -739,10 +641,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("genome")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("genome")){
-							count = new GenomeExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("genome")), defaults, dbAction, missingValue);
-						}
+						int count = new GenomeCsvReader().importCsv(db, new File(directory+"/genome.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("genome");
 						result.getMessages().put("genome", "evaluated "+count+" genome elements");
 					} catch (Exception e) {
@@ -754,10 +653,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("panel")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("panel")){
-							count = new PanelExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("panel")), defaults, dbAction, missingValue);
-						}
+						int count = new PanelCsvReader().importCsv(db, new File(directory+"/panel.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("panel");
 						result.getMessages().put("panel", "evaluated "+count+" panel elements");
 					} catch (Exception e) {
@@ -769,10 +665,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("dataset")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("dataset")){
-							count = new DataSetExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("dataset")), defaults, dbAction, missingValue);
-						}
+						int count = new DataSetCsvReader().importCsv(db, new File(directory+"/dataset.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("dataset");
 						result.getMessages().put("dataset", "evaluated "+count+" dataset elements");
 					} catch (Exception e) {
@@ -784,10 +677,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("protocol")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("protocol")){
-							count = new ProtocolExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("protocol")), defaults, dbAction, missingValue);
-						}
+						int count = new ProtocolCsvReader().importCsv(db, new File(directory+"/protocol.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("protocol");
 						result.getMessages().put("protocol", "evaluated "+count+" protocol elements");
 					} catch (Exception e) {
@@ -799,10 +689,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("observablefeature")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("observablefeature")){
-							count = new ObservableFeatureExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("observablefeature")), defaults, dbAction, missingValue);
-						}
+						int count = new ObservableFeatureCsvReader().importCsv(db, new File(directory+"/observablefeature.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("observablefeature");
 						result.getMessages().put("observablefeature", "evaluated "+count+" observablefeature elements");
 					} catch (Exception e) {
@@ -814,10 +701,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("accession")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("accession")){
-							count = new AccessionExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("accession")), defaults, dbAction, missingValue);
-						}
+						int count = new AccessionCsvReader().importCsv(db, new File(directory+"/accession.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("accession");
 						result.getMessages().put("accession", "evaluated "+count+" accession elements");
 					} catch (Exception e) {
@@ -829,10 +713,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("ontologyterm")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("ontologyterm")){
-							count = new OntologyTermExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("ontologyterm")), defaults, dbAction, missingValue);
-						}
+						int count = new OntologyTermCsvReader().importCsv(db, new File(directory+"/ontologyterm.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("ontologyterm");
 						result.getMessages().put("ontologyterm", "evaluated "+count+" ontologyterm elements");
 					} catch (Exception e) {
@@ -844,10 +725,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("species")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("species")){
-							count = new SpeciesExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("species")), defaults, dbAction, missingValue);
-						}
+						int count = new SpeciesCsvReader().importCsv(db, new File(directory+"/species.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("species");
 						result.getMessages().put("species", "evaluated "+count+" species elements");
 					} catch (Exception e) {
@@ -859,10 +737,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("ontology")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("ontology")){
-							count = new OntologyExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("ontology")), defaults, dbAction, missingValue);
-						}
+						int count = new OntologyCsvReader().importCsv(db, new File(directory+"/ontology.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("ontology");
 						result.getMessages().put("ontology", "evaluated "+count+" ontology elements");
 					} catch (Exception e) {
@@ -874,10 +749,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("individual")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("individual")){
-							count = new IndividualExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("individual")), defaults, dbAction, missingValue);
-						}
+						int count = new IndividualCsvReader().importCsv(db, new File(directory+"/individual.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("individual");
 						result.getMessages().put("individual", "evaluated "+count+" individual elements");
 					} catch (Exception e) {
@@ -889,10 +761,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("observationtarget")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("observationtarget")){
-							count = new ObservationTargetExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("observationtarget")), defaults, dbAction, missingValue);
-						}
+						int count = new ObservationTargetCsvReader().importCsv(db, new File(directory+"/observationtarget.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("observationtarget");
 						result.getMessages().put("observationtarget", "evaluated "+count+" observationtarget elements");
 					} catch (Exception e) {
@@ -904,10 +773,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("characteristic")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("characteristic")){
-							count = new CharacteristicExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("characteristic")), defaults, dbAction, missingValue);
-						}
+						int count = new CharacteristicCsvReader().importCsv(db, new File(directory+"/characteristic.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("characteristic");
 						result.getMessages().put("characteristic", "evaluated "+count+" characteristic elements");
 					} catch (Exception e) {
@@ -919,10 +785,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("molgenispermission")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("molgenispermission")){
-							count = new MolgenisPermissionExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("molgenispermission")), defaults, dbAction, missingValue);
-						}
+						int count = new MolgenisPermissionCsvReader().importCsv(db, new File(directory+"/molgenispermission.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("molgenispermission");
 						result.getMessages().put("molgenispermission", "evaluated "+count+" molgenispermission elements");
 					} catch (Exception e) {
@@ -934,10 +797,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("molgenisrolegrouplink")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("molgenisrolegrouplink")){
-							count = new MolgenisRoleGroupLinkExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("molgenisrolegrouplink")), defaults, dbAction, missingValue);
-						}
+						int count = new MolgenisRoleGroupLinkCsvReader().importCsv(db, new File(directory+"/molgenisrolegrouplink.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("molgenisrolegrouplink");
 						result.getMessages().put("molgenisrolegrouplink", "evaluated "+count+" molgenisrolegrouplink elements");
 					} catch (Exception e) {
@@ -949,10 +809,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("molgenisuser")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("molgenisuser")){
-							count = new MolgenisUserExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("molgenisuser")), defaults, dbAction, missingValue);
-						}
+						int count = new MolgenisUserCsvReader().importCsv(db, new File(directory+"/molgenisuser.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("molgenisuser");
 						result.getMessages().put("molgenisuser", "evaluated "+count+" molgenisuser elements");
 					} catch (Exception e) {
@@ -964,10 +821,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("molgenisgroup")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("molgenisgroup")){
-							count = new MolgenisGroupExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("molgenisgroup")), defaults, dbAction, missingValue);
-						}
+						int count = new MolgenisGroupCsvReader().importCsv(db, new File(directory+"/molgenisgroup.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("molgenisgroup");
 						result.getMessages().put("molgenisgroup", "evaluated "+count+" molgenisgroup elements");
 					} catch (Exception e) {
@@ -979,10 +833,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("molgenisrole")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("molgenisrole")){
-							count = new MolgenisRoleExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("molgenisrole")), defaults, dbAction, missingValue);
-						}
+						int count = new MolgenisRoleCsvReader().importCsv(db, new File(directory+"/molgenisrole.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("molgenisrole");
 						result.getMessages().put("molgenisrole", "evaluated "+count+" molgenisrole elements");
 					} catch (Exception e) {
@@ -994,10 +845,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("runtimeproperty")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("runtimeproperty")){
-							count = new RuntimePropertyExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("runtimeproperty")), defaults, dbAction, missingValue);
-						}
+						int count = new RuntimePropertyCsvReader().importCsv(db, new File(directory+"/runtimeproperty.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("runtimeproperty");
 						result.getMessages().put("runtimeproperty", "evaluated "+count+" runtimeproperty elements");
 					} catch (Exception e) {
@@ -1009,10 +857,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("molgenisfile")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("molgenisfile")){
-							count = new MolgenisFileExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("molgenisfile")), defaults, dbAction, missingValue);
-						}
+						int count = new MolgenisFileCsvReader().importCsv(db, new File(directory+"/molgenisfile.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("molgenisfile");
 						result.getMessages().put("molgenisfile", "evaluated "+count+" molgenisfile elements");
 					} catch (Exception e) {
@@ -1024,10 +869,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("molgenisentity")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("molgenisentity")){
-							count = new MolgenisEntityExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("molgenisentity")), defaults, dbAction, missingValue);
-						}
+						int count = new MolgenisEntityCsvReader().importCsv(db, new File(directory+"/molgenisentity.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("molgenisentity");
 						result.getMessages().put("molgenisentity", "evaluated "+count+" molgenisentity elements");
 					} catch (Exception e) {
@@ -1043,10 +885,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("molgenisentity")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("molgenisentity")){
-							count = new MolgenisEntityExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("molgenisentity")), defaults, dbAction, missingValue);
-						}
+						int count = new MolgenisEntityCsvReader().importCsv(db, new File(directory+"/molgenisentity.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("molgenisentity");
 						result.getMessages().put("molgenisentity",  "evaluated "+count+" molgenisentity elements");
 					} catch (Exception e) {
@@ -1058,10 +897,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("molgenisfile")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("molgenisfile")){
-							count = new MolgenisFileExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("molgenisfile")), defaults, dbAction, missingValue);
-						}
+						int count = new MolgenisFileCsvReader().importCsv(db, new File(directory+"/molgenisfile.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("molgenisfile");
 						result.getMessages().put("molgenisfile",  "evaluated "+count+" molgenisfile elements");
 					} catch (Exception e) {
@@ -1073,10 +909,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("runtimeproperty")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("runtimeproperty")){
-							count = new RuntimePropertyExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("runtimeproperty")), defaults, dbAction, missingValue);
-						}
+						int count = new RuntimePropertyCsvReader().importCsv(db, new File(directory+"/runtimeproperty.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("runtimeproperty");
 						result.getMessages().put("runtimeproperty",  "evaluated "+count+" runtimeproperty elements");
 					} catch (Exception e) {
@@ -1088,10 +921,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("molgenisrole")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("molgenisrole")){
-							count = new MolgenisRoleExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("molgenisrole")), defaults, dbAction, missingValue);
-						}
+						int count = new MolgenisRoleCsvReader().importCsv(db, new File(directory+"/molgenisrole.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("molgenisrole");
 						result.getMessages().put("molgenisrole",  "evaluated "+count+" molgenisrole elements");
 					} catch (Exception e) {
@@ -1103,10 +933,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("molgenisgroup")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("molgenisgroup")){
-							count = new MolgenisGroupExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("molgenisgroup")), defaults, dbAction, missingValue);
-						}
+						int count = new MolgenisGroupCsvReader().importCsv(db, new File(directory+"/molgenisgroup.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("molgenisgroup");
 						result.getMessages().put("molgenisgroup",  "evaluated "+count+" molgenisgroup elements");
 					} catch (Exception e) {
@@ -1118,10 +945,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("molgenisuser")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("molgenisuser")){
-							count = new MolgenisUserExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("molgenisuser")), defaults, dbAction, missingValue);
-						}
+						int count = new MolgenisUserCsvReader().importCsv(db, new File(directory+"/molgenisuser.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("molgenisuser");
 						result.getMessages().put("molgenisuser",  "evaluated "+count+" molgenisuser elements");
 					} catch (Exception e) {
@@ -1133,10 +957,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("molgenisrolegrouplink")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("molgenisrolegrouplink")){
-							count = new MolgenisRoleGroupLinkExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("molgenisrolegrouplink")), defaults, dbAction, missingValue);
-						}
+						int count = new MolgenisRoleGroupLinkCsvReader().importCsv(db, new File(directory+"/molgenisrolegrouplink.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("molgenisrolegrouplink");
 						result.getMessages().put("molgenisrolegrouplink",  "evaluated "+count+" molgenisrolegrouplink elements");
 					} catch (Exception e) {
@@ -1148,10 +969,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("molgenispermission")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("molgenispermission")){
-							count = new MolgenisPermissionExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("molgenispermission")), defaults, dbAction, missingValue);
-						}
+						int count = new MolgenisPermissionCsvReader().importCsv(db, new File(directory+"/molgenispermission.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("molgenispermission");
 						result.getMessages().put("molgenispermission",  "evaluated "+count+" molgenispermission elements");
 					} catch (Exception e) {
@@ -1163,10 +981,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("characteristic")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("characteristic")){
-							count = new CharacteristicExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("characteristic")), defaults, dbAction, missingValue);
-						}
+						int count = new CharacteristicCsvReader().importCsv(db, new File(directory+"/characteristic.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("characteristic");
 						result.getMessages().put("characteristic",  "evaluated "+count+" characteristic elements");
 					} catch (Exception e) {
@@ -1178,10 +993,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("observationtarget")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("observationtarget")){
-							count = new ObservationTargetExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("observationtarget")), defaults, dbAction, missingValue);
-						}
+						int count = new ObservationTargetCsvReader().importCsv(db, new File(directory+"/observationtarget.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("observationtarget");
 						result.getMessages().put("observationtarget",  "evaluated "+count+" observationtarget elements");
 					} catch (Exception e) {
@@ -1193,10 +1005,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("individual")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("individual")){
-							count = new IndividualExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("individual")), defaults, dbAction, missingValue);
-						}
+						int count = new IndividualCsvReader().importCsv(db, new File(directory+"/individual.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("individual");
 						result.getMessages().put("individual",  "evaluated "+count+" individual elements");
 					} catch (Exception e) {
@@ -1208,10 +1017,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("ontology")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("ontology")){
-							count = new OntologyExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("ontology")), defaults, dbAction, missingValue);
-						}
+						int count = new OntologyCsvReader().importCsv(db, new File(directory+"/ontology.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("ontology");
 						result.getMessages().put("ontology",  "evaluated "+count+" ontology elements");
 					} catch (Exception e) {
@@ -1223,10 +1029,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("species")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("species")){
-							count = new SpeciesExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("species")), defaults, dbAction, missingValue);
-						}
+						int count = new SpeciesCsvReader().importCsv(db, new File(directory+"/species.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("species");
 						result.getMessages().put("species",  "evaluated "+count+" species elements");
 					} catch (Exception e) {
@@ -1238,10 +1041,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("ontologyterm")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("ontologyterm")){
-							count = new OntologyTermExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("ontologyterm")), defaults, dbAction, missingValue);
-						}
+						int count = new OntologyTermCsvReader().importCsv(db, new File(directory+"/ontologyterm.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("ontologyterm");
 						result.getMessages().put("ontologyterm",  "evaluated "+count+" ontologyterm elements");
 					} catch (Exception e) {
@@ -1253,10 +1053,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("accession")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("accession")){
-							count = new AccessionExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("accession")), defaults, dbAction, missingValue);
-						}
+						int count = new AccessionCsvReader().importCsv(db, new File(directory+"/accession.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("accession");
 						result.getMessages().put("accession",  "evaluated "+count+" accession elements");
 					} catch (Exception e) {
@@ -1268,10 +1065,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("observablefeature")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("observablefeature")){
-							count = new ObservableFeatureExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("observablefeature")), defaults, dbAction, missingValue);
-						}
+						int count = new ObservableFeatureCsvReader().importCsv(db, new File(directory+"/observablefeature.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("observablefeature");
 						result.getMessages().put("observablefeature",  "evaluated "+count+" observablefeature elements");
 					} catch (Exception e) {
@@ -1283,10 +1077,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("protocol")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("protocol")){
-							count = new ProtocolExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("protocol")), defaults, dbAction, missingValue);
-						}
+						int count = new ProtocolCsvReader().importCsv(db, new File(directory+"/protocol.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("protocol");
 						result.getMessages().put("protocol",  "evaluated "+count+" protocol elements");
 					} catch (Exception e) {
@@ -1298,10 +1089,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("dataset")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("dataset")){
-							count = new DataSetExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("dataset")), defaults, dbAction, missingValue);
-						}
+						int count = new DataSetCsvReader().importCsv(db, new File(directory+"/dataset.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("dataset");
 						result.getMessages().put("dataset",  "evaluated "+count+" dataset elements");
 					} catch (Exception e) {
@@ -1313,10 +1101,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("panel")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("panel")){
-							count = new PanelExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("panel")), defaults, dbAction, missingValue);
-						}
+						int count = new PanelCsvReader().importCsv(db, new File(directory+"/panel.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("panel");
 						result.getMessages().put("panel",  "evaluated "+count+" panel elements");
 					} catch (Exception e) {
@@ -1328,10 +1113,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("genome")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("genome")){
-							count = new GenomeExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("genome")), defaults, dbAction, missingValue);
-						}
+						int count = new GenomeCsvReader().importCsv(db, new File(directory+"/genome.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("genome");
 						result.getMessages().put("genome",  "evaluated "+count+" genome elements");
 					} catch (Exception e) {
@@ -1343,10 +1125,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("chromosome")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("chromosome")){
-							count = new ChromosomeExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("chromosome")), defaults, dbAction, missingValue);
-						}
+						int count = new ChromosomeCsvReader().importCsv(db, new File(directory+"/chromosome.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("chromosome");
 						result.getMessages().put("chromosome",  "evaluated "+count+" chromosome elements");
 					} catch (Exception e) {
@@ -1358,10 +1137,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("gene")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("gene")){
-							count = new GeneExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("gene")), defaults, dbAction, missingValue);
-						}
+						int count = new GeneCsvReader().importCsv(db, new File(directory+"/gene.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("gene");
 						result.getMessages().put("gene",  "evaluated "+count+" gene elements");
 					} catch (Exception e) {
@@ -1373,10 +1149,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("protein")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("protein")){
-							count = new ProteinExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("protein")), defaults, dbAction, missingValue);
-						}
+						int count = new ProteinCsvReader().importCsv(db, new File(directory+"/protein.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("protein");
 						result.getMessages().put("protein",  "evaluated "+count+" protein elements");
 					} catch (Exception e) {
@@ -1388,10 +1161,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("proteindomain")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("proteindomain")){
-							count = new ProteinDomainExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("proteindomain")), defaults, dbAction, missingValue);
-						}
+						int count = new ProteinDomainCsvReader().importCsv(db, new File(directory+"/proteindomain.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("proteindomain");
 						result.getMessages().put("proteindomain",  "evaluated "+count+" proteindomain elements");
 					} catch (Exception e) {
@@ -1403,10 +1173,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("exon")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("exon")){
-							count = new ExonExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("exon")), defaults, dbAction, missingValue);
-						}
+						int count = new ExonCsvReader().importCsv(db, new File(directory+"/exon.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("exon");
 						result.getMessages().put("exon",  "evaluated "+count+" exon elements");
 					} catch (Exception e) {
@@ -1418,10 +1185,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("variant")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("variant")){
-							count = new VariantExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("variant")), defaults, dbAction, missingValue);
-						}
+						int count = new VariantCsvReader().importCsv(db, new File(directory+"/variant.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("variant");
 						result.getMessages().put("variant",  "evaluated "+count+" variant elements");
 					} catch (Exception e) {
@@ -1433,10 +1197,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("institute")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("institute")){
-							count = new InstituteExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("institute")), defaults, dbAction, missingValue);
-						}
+						int count = new InstituteCsvReader().importCsv(db, new File(directory+"/institute.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("institute");
 						result.getMessages().put("institute",  "evaluated "+count+" institute elements");
 					} catch (Exception e) {
@@ -1448,10 +1209,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("person")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("person")){
-							count = new PersonExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("person")), defaults, dbAction, missingValue);
-						}
+						int count = new PersonCsvReader().importCsv(db, new File(directory+"/person.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("person");
 						result.getMessages().put("person",  "evaluated "+count+" person elements");
 					} catch (Exception e) {
@@ -1463,10 +1221,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("citation")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("citation")){
-							count = new CitationExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("citation")), defaults, dbAction, missingValue);
-						}
+						int count = new CitationCsvReader().importCsv(db, new File(directory+"/citation.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("citation");
 						result.getMessages().put("citation",  "evaluated "+count+" citation elements");
 					} catch (Exception e) {
@@ -1478,10 +1233,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("investigation")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("investigation")){
-							count = new InvestigationExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("investigation")), defaults, dbAction, missingValue);
-						}
+						int count = new InvestigationCsvReader().importCsv(db, new File(directory+"/investigation.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("investigation");
 						result.getMessages().put("investigation",  "evaluated "+count+" investigation elements");
 					} catch (Exception e) {
@@ -1493,10 +1245,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("study")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("study")){
-							count = new StudyExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("study")), defaults, dbAction, missingValue);
-						}
+						int count = new StudyCsvReader().importCsv(db, new File(directory+"/study.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("study");
 						result.getMessages().put("study",  "evaluated "+count+" study elements");
 					} catch (Exception e) {
@@ -1508,10 +1257,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("experiment")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("experiment")){
-							count = new ExperimentExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("experiment")), defaults, dbAction, missingValue);
-						}
+						int count = new ExperimentCsvReader().importCsv(db, new File(directory+"/experiment.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("experiment");
 						result.getMessages().put("experiment",  "evaluated "+count+" experiment elements");
 					} catch (Exception e) {
@@ -1523,10 +1269,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("submission")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("submission")){
-							count = new SubmissionExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("submission")), defaults, dbAction, missingValue);
-						}
+						int count = new SubmissionCsvReader().importCsv(db, new File(directory+"/submission.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("submission");
 						result.getMessages().put("submission",  "evaluated "+count+" submission elements");
 					} catch (Exception e) {
@@ -1538,10 +1281,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("contribution")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("contribution")){
-							count = new ContributionExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("contribution")), defaults, dbAction, missingValue);
-						}
+						int count = new ContributionCsvReader().importCsv(db, new File(directory+"/contribution.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("contribution");
 						result.getMessages().put("contribution",  "evaluated "+count+" contribution elements");
 					} catch (Exception e) {
@@ -1553,10 +1293,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("studydetails")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("studydetails")){
-							count = new StudyDetailsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("studydetails")), defaults, dbAction, missingValue);
-						}
+						int count = new StudyDetailsCsvReader().importCsv(db, new File(directory+"/studydetails.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("studydetails");
 						result.getMessages().put("studydetails",  "evaluated "+count+" studydetails elements");
 					} catch (Exception e) {
@@ -1568,10 +1305,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("phenotypeproperty")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("phenotypeproperty")){
-							count = new PhenotypePropertyExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("phenotypeproperty")), defaults, dbAction, missingValue);
-						}
+						int count = new PhenotypePropertyCsvReader().importCsv(db, new File(directory+"/phenotypeproperty.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("phenotypeproperty");
 						result.getMessages().put("phenotypeproperty",  "evaluated "+count+" phenotypeproperty elements");
 					} catch (Exception e) {
@@ -1583,10 +1317,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("phenotypemethod")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("phenotypemethod")){
-							count = new PhenotypeMethodExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("phenotypemethod")), defaults, dbAction, missingValue);
-						}
+						int count = new PhenotypeMethodCsvReader().importCsv(db, new File(directory+"/phenotypemethod.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("phenotypemethod");
 						result.getMessages().put("phenotypemethod",  "evaluated "+count+" phenotypemethod elements");
 					} catch (Exception e) {
@@ -1598,10 +1329,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("samplepanel")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("samplepanel")){
-							count = new SamplePanelExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("samplepanel")), defaults, dbAction, missingValue);
-						}
+						int count = new SamplePanelCsvReader().importCsv(db, new File(directory+"/samplepanel.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("samplepanel");
 						result.getMessages().put("samplepanel",  "evaluated "+count+" samplepanel elements");
 					} catch (Exception e) {
@@ -1613,10 +1341,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("assayedpanel")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("assayedpanel")){
-							count = new AssayedPanelExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("assayedpanel")), defaults, dbAction, missingValue);
-						}
+						int count = new AssayedPanelCsvReader().importCsv(db, new File(directory+"/assayedpanel.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("assayedpanel");
 						result.getMessages().put("assayedpanel",  "evaluated "+count+" assayedpanel elements");
 					} catch (Exception e) {
@@ -1628,10 +1353,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("panelsource")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("panelsource")){
-							count = new PanelSourceExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("panelsource")), defaults, dbAction, missingValue);
-						}
+						int count = new PanelSourceCsvReader().importCsv(db, new File(directory+"/panelsource.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("panelsource");
 						result.getMessages().put("panelsource",  "evaluated "+count+" panelsource elements");
 					} catch (Exception e) {
@@ -1643,10 +1365,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("gwasexperiment")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("gwasexperiment")){
-							count = new GWASExperimentExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("gwasexperiment")), defaults, dbAction, missingValue);
-						}
+						int count = new GWASExperimentCsvReader().importCsv(db, new File(directory+"/gwasexperiment.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("gwasexperiment");
 						result.getMessages().put("gwasexperiment",  "evaluated "+count+" gwasexperiment elements");
 					} catch (Exception e) {
@@ -1658,10 +1377,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("usedmarkerset")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("usedmarkerset")){
-							count = new UsedMarkerSetExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("usedmarkerset")), defaults, dbAction, missingValue);
-						}
+						int count = new UsedMarkerSetCsvReader().importCsv(db, new File(directory+"/usedmarkerset.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("usedmarkerset");
 						result.getMessages().put("usedmarkerset",  "evaluated "+count+" usedmarkerset elements");
 					} catch (Exception e) {
@@ -1673,10 +1389,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("category")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("category")){
-							count = new CategoryExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("category")), defaults, dbAction, missingValue);
-						}
+						int count = new CategoryCsvReader().importCsv(db, new File(directory+"/category.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("category");
 						result.getMessages().put("category",  "evaluated "+count+" category elements");
 					} catch (Exception e) {
@@ -1688,10 +1401,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("significance")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("significance")){
-							count = new SignificanceExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("significance")), defaults, dbAction, missingValue);
-						}
+						int count = new SignificanceCsvReader().importCsv(db, new File(directory+"/significance.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("significance");
 						result.getMessages().put("significance",  "evaluated "+count+" significance elements");
 					} catch (Exception e) {
@@ -1703,10 +1413,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("effectsize")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("effectsize")){
-							count = new EffectSizeExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("effectsize")), defaults, dbAction, missingValue);
-						}
+						int count = new EffectSizeCsvReader().importCsv(db, new File(directory+"/effectsize.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("effectsize");
 						result.getMessages().put("effectsize",  "evaluated "+count+" effectsize elements");
 					} catch (Exception e) {
@@ -1718,10 +1425,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("selectioncriteria")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("selectioncriteria")){
-							count = new SelectionCriteriaExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("selectioncriteria")), defaults, dbAction, missingValue);
-						}
+						int count = new SelectionCriteriaCsvReader().importCsv(db, new File(directory+"/selectioncriteria.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("selectioncriteria");
 						result.getMessages().put("selectioncriteria",  "evaluated "+count+" selectioncriteria elements");
 					} catch (Exception e) {
@@ -1733,10 +1437,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("protocol_subprotocols")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("protocol_subprotocols")){
-							count = new Protocol_SubprotocolsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("protocol_subprotocols")), defaults, dbAction, missingValue);
-						}
+						int count = new Protocol_SubprotocolsCsvReader().importCsv(db, new File(directory+"/protocol_subprotocols.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("protocol_subprotocols");
 						result.getMessages().put("protocol_subprotocols",  "evaluated "+count+" protocol_subprotocols elements");
 					} catch (Exception e) {
@@ -1748,10 +1449,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("protocol_features")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("protocol_features")){
-							count = new Protocol_FeaturesExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("protocol_features")), defaults, dbAction, missingValue);
-						}
+						int count = new Protocol_FeaturesCsvReader().importCsv(db, new File(directory+"/protocol_features.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("protocol_features");
 						result.getMessages().put("protocol_features",  "evaluated "+count+" protocol_features elements");
 					} catch (Exception e) {
@@ -1763,10 +1461,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("panel_individuals")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("panel_individuals")){
-							count = new Panel_IndividualsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("panel_individuals")), defaults, dbAction, missingValue);
-						}
+						int count = new Panel_IndividualsCsvReader().importCsv(db, new File(directory+"/panel_individuals.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("panel_individuals");
 						result.getMessages().put("panel_individuals",  "evaluated "+count+" panel_individuals elements");
 					} catch (Exception e) {
@@ -1778,10 +1473,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("experiment_assayedpanels")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("experiment_assayedpanels")){
-							count = new Experiment_AssayedPanelsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("experiment_assayedpanels")), defaults, dbAction, missingValue);
-						}
+						int count = new Experiment_AssayedPanelsCsvReader().importCsv(db, new File(directory+"/experiment_assayedpanels.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("experiment_assayedpanels");
 						result.getMessages().put("experiment_assayedpanels",  "evaluated "+count+" experiment_assayedpanels elements");
 					} catch (Exception e) {
@@ -1793,10 +1485,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("person_affiliateinstitutions")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("person_affiliateinstitutions")){
-							count = new Person_AffiliateInstitutionsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("person_affiliateinstitutions")), defaults, dbAction, missingValue);
-						}
+						int count = new Person_AffiliateInstitutionsCsvReader().importCsv(db, new File(directory+"/person_affiliateinstitutions.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("person_affiliateinstitutions");
 						result.getMessages().put("person_affiliateinstitutions",  "evaluated "+count+" person_affiliateinstitutions elements");
 					} catch (Exception e) {
@@ -1808,10 +1497,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("citation_ontologyterms")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("citation_ontologyterms")){
-							count = new Citation_OntologyTermsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("citation_ontologyterms")), defaults, dbAction, missingValue);
-						}
+						int count = new Citation_OntologyTermsCsvReader().importCsv(db, new File(directory+"/citation_ontologyterms.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("citation_ontologyterms");
 						result.getMessages().put("citation_ontologyterms",  "evaluated "+count+" citation_ontologyterms elements");
 					} catch (Exception e) {
@@ -1823,10 +1509,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("studydetails_othercitations")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("studydetails_othercitations")){
-							count = new StudyDetails_OtherCitationsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("studydetails_othercitations")), defaults, dbAction, missingValue);
-						}
+						int count = new StudyDetails_OtherCitationsCsvReader().importCsv(db, new File(directory+"/studydetails_othercitations.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("studydetails_othercitations");
 						result.getMessages().put("studydetails_othercitations",  "evaluated "+count+" studydetails_othercitations elements");
 					} catch (Exception e) {
@@ -1838,10 +1521,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("observationset")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("observationset")){
-							count = new ObservationSetExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("observationset")), defaults, dbAction, missingValue);
-						}
+						int count = new ObservationSetCsvReader().importCsv(db, new File(directory+"/observationset.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("observationset");
 						result.getMessages().put("observationset",  "evaluated "+count+" observationset elements");
 					} catch (Exception e) {
@@ -1853,10 +1533,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("observedvalue")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("observedvalue")){
-							count = new ObservedValueExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("observedvalue")), defaults, dbAction, missingValue);
-						}
+						int count = new ObservedValueCsvReader().importCsv(db, new File(directory+"/observedvalue.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("observedvalue");
 						result.getMessages().put("observedvalue",  "evaluated "+count+" observedvalue elements");
 					} catch (Exception e) {
@@ -1868,10 +1545,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("frequencycluster")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("frequencycluster")){
-							count = new FrequencyClusterExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("frequencycluster")), defaults, dbAction, missingValue);
-						}
+						int count = new FrequencyClusterCsvReader().importCsv(db, new File(directory+"/frequencycluster.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("frequencycluster");
 						result.getMessages().put("frequencycluster",  "evaluated "+count+" frequencycluster elements");
 					} catch (Exception e) {
@@ -1883,10 +1557,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("genotypefrequency")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("genotypefrequency")){
-							count = new GenotypeFrequencyExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("genotypefrequency")), defaults, dbAction, missingValue);
-						}
+						int count = new GenotypeFrequencyCsvReader().importCsv(db, new File(directory+"/genotypefrequency.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("genotypefrequency");
 						result.getMessages().put("genotypefrequency",  "evaluated "+count+" genotypefrequency elements");
 					} catch (Exception e) {
@@ -1898,10 +1569,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("allelefrequency")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("allelefrequency")){
-							count = new AlleleFrequencyExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("allelefrequency")), defaults, dbAction, missingValue);
-						}
+						int count = new AlleleFrequencyCsvReader().importCsv(db, new File(directory+"/allelefrequency.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("allelefrequency");
 						result.getMessages().put("allelefrequency",  "evaluated "+count+" allelefrequency elements");
 					} catch (Exception e) {
@@ -1913,10 +1581,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("phenotypevalue")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("phenotypevalue")){
-							count = new PhenotypeValueExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("phenotypevalue")), defaults, dbAction, missingValue);
-						}
+						int count = new PhenotypeValueCsvReader().importCsv(db, new File(directory+"/phenotypevalue.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("phenotypevalue");
 						result.getMessages().put("phenotypevalue",  "evaluated "+count+" phenotypevalue elements");
 					} catch (Exception e) {
@@ -1928,10 +1593,7 @@ public class ExcelImport
 				if (result.getErrorItem().equals("no error found") && (components == null || components.contains("experiment_datasets")))
 				{
 					try {
-						int count = 0;
-						if(sheetNames.contains("experiment_datasets")){
-							count = new Experiment_DataSetsExcelReader().importSheet(db, workbook.getSheet(sheetNames.indexOf("experiment_datasets")), defaults, dbAction, missingValue);
-						}
+						int count = new Experiment_DataSetsCsvReader().importCsv(db, new File(directory+"/experiment_datasets.txt"), defaults, dbAction, missingValue);
 						result.getProgressLog().add("experiment_datasets");
 						result.getMessages().put("experiment_datasets",  "evaluated "+count+" experiment_datasets elements");
 					} catch (Exception e) {
@@ -1942,20 +1604,20 @@ public class ExcelImport
 				}
 			}			
 			
-			if (useDbTransaction)
+			if (useDbTransaction &! alreadyInTx)
 			{
 				logger.debug("commiting transactions...");
 				if (db.inTx()){
 					db.commitTx();
 				}else{
-					throw new DatabaseException("Cannot commit ExcelImport: database not in transaction.");
+					throw new DatabaseException("Cannot commit CsvImport: database not in transaction.");
 				}
 			}
 		}
 		catch (Exception e)
 		{
 			logger.error("Import failed: " + e.getMessage());
-			if (useDbTransaction)
+			if (useDbTransaction &! alreadyInTx)
 			{
 				if (db.inTx()){
 					logger.debug("Db in transaction, rolling back...");
@@ -1964,11 +1626,10 @@ public class ExcelImport
 					logger.debug("Db not in transaction");
 				}
 			}
-			throw e;
-		}finally{
-			//restore the locale settings (important!)
-			Locale.setDefault(saveTheDefault);
-			workbook.close();
+			e.printStackTrace();
+			
+			//Don't throw to avoid 'try-catch' on usage. No harm done.
+			//throw e;
 		}
 		return result;
 	}

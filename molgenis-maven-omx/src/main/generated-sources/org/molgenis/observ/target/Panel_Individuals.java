@@ -1,5 +1,5 @@
 
-/* File:        org.molgenis/model/Panel_Individuals.java
+/* File:        org.molgenis.omx/model/Panel_Individuals.java
  * Generator:   org.molgenis.generators.DataTypeGen 4.0.0-testing
  *
  * THIS FILE HAS BEEN GENERATED, PLEASE DO NOT EDIT!

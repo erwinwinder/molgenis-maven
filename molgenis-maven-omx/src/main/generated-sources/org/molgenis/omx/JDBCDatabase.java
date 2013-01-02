@@ -1,13 +1,13 @@
-/* File:        org.molgenis/model/JDBCDatabase
- * Copyright:   GBIC 2000-2012, all rights reserved
- * Date:        November 26, 2012
+/* File:        org.molgenis.omx/model/JDBCDatabase
+ * Copyright:   GBIC 2000-2013, all rights reserved
+ * Date:        January 2, 2013
  * 
  * generator:   org.molgenis.generators.db.JDBCDatabaseGen 4.0.0-testing
  *
  * THIS FILE HAS BEEN GENERATED, PLEASE DO NOT EDIT!
  */
 
-package app;
+package org.molgenis.omx;
 
 import java.io.File;
 import java.io.FileNotFoundException;

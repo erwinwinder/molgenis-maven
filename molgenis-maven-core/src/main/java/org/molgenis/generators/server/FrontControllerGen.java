@@ -33,7 +33,7 @@ public class FrontControllerGen extends Generator
 		Template template = createTemplate(this.getClass().getSimpleName() + ".ftl");
 		Map<String, Object> templateArgs = createTemplateArguments(options);
 
-		File target = new File(this.getSourcePath(options) + APP_DIR + "/servlet/FrontController.java");
+		File target = new File(this.getSourcePath(options) + getAppDir() + "/servlet/FrontController.java");
 		boolean created = target.getParentFile().mkdirs();
 		if (!created && !target.getParentFile().exists())
 		{
@@ -42,7 +42,7 @@ public class FrontControllerGen extends Generator
 
 		templateArgs.put("model", model);
 		templateArgs.put("services", options.services);
-		templateArgs.put("package", APP_DIR);
+		templateArgs.put("package", getAppPackage());
 		templateArgs.put("db_filepath", options.db_filepath);
 		templateArgs.put("loginclass", options.auth_loginclass);
 		templateArgs.put("auth_redirect", options.auth_redirect);

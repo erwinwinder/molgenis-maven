@@ -31,14 +31,14 @@ public class DatabaseFactoryGen extends Generator
 		Template template = createTemplate("/" + getClass().getSimpleName() + ".java.ftl");
 		Map<String, Object> templateArgs = createTemplateArguments(options);
 
-		File target = new File(this.getSourcePath(options) + "/app/DatabaseFactory.java");
+		File target = new File(this.getSourcePath(options) + getAppDir() + "/DatabaseFactory.java");
 		boolean created = target.getParentFile().mkdirs();
 		if (!created && !target.getParentFile().exists())
 		{
 			throw new IOException("could not create " + target.getParentFile());
 		}
 
-		templateArgs.put("package", APP_DIR);
+		templateArgs.put("package", getAppPackage());
 		templateArgs.put("databaseImp",
 				options.mapper_implementation.equals(MolgenisOptions.MapperImplementation.JPA) ? "jpa" : "jdbc");
 		templateArgs.put("auth_loginclass", options.auth_loginclass);

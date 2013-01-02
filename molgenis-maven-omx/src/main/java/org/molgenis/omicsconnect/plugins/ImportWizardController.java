@@ -23,12 +23,11 @@ import org.molgenis.framework.ui.PluginModel;
 import org.molgenis.framework.ui.ScreenController;
 import org.molgenis.framework.ui.ScreenMessage;
 import org.molgenis.omicsconnect.dataset.DataSetImporter;
+import org.molgenis.omx.ExcelImport;
+import org.molgenis.omx.ImportWizardExcelPrognosis;
 import org.molgenis.util.Entity;
 import org.molgenis.util.SimpleTuple;
 import org.molgenis.util.Tuple;
-
-import app.ExcelImport;
-import app.ImportWizardExcelPrognosis;
 
 /**
  * Import wizard controller

@@ -1,13 +1,13 @@
-/* File:        Org.molgenis/screen/investigation.java
- * Copyright:   GBIC 2000-2012, all rights reserved
- * Date:        November 26, 2012
+/* File:        Org.molgenis.omx/screen/investigation.java
+ * Copyright:   GBIC 2000-2013, all rights reserved
+ * Date:        January 2, 2013
  * 
  * generator:   org.molgenis.generators.ui.FormControllerGen 4.0.0-testing
  *
  * 
  * THIS FILE HAS BEEN GENERATED, PLEASE DO NOT EDIT!
  */
-package app.ui;
+package org.molgenis.omx.ui;
 
 // jdk
 import java.util.Vector;

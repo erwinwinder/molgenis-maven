@@ -53,9 +53,9 @@ public class PluginControllerGen extends Generator
 					parent = parent.getParent();
 				templateArgs.put("parent_form", parent);
 				templateArgs.put("model", model);
-				templateArgs.put("package", APP_DIR + ".ui");
+				templateArgs.put("package", getAppPackage() + ".ui");
 
-				File targetDir = new File(this.getSourcePath(options) + APP_DIR + "/ui/");
+				File targetDir = new File(this.getSourcePath(options) + getAppDir() + "/ui/");
 				boolean created = targetDir.mkdirs();
 				if (!created && !targetDir.exists())
 				{

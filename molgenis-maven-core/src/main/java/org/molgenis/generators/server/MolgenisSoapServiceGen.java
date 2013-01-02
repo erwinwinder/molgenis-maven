@@ -38,7 +38,7 @@ public class MolgenisSoapServiceGen extends Generator
 		List<Entity> entityList = model.getEntities();
 		List<Method> methodList = model.getMethods();
 
-		File target = new File(this.getSourcePath(options) + APP_DIR + "/servlet/SoapService.java");
+		File target = new File(this.getSourcePath(options) + getAppDir() + "/servlet/SoapService.java");
 		boolean created = target.getParentFile().mkdirs();
 		if (!created && !target.getParentFile().exists())
 		{
@@ -49,7 +49,7 @@ public class MolgenisSoapServiceGen extends Generator
 		templateArgs.put("methods", methodList);
 		templateArgs.put("entities", entityList);
 		templateArgs.put("helper", new GeneratorHelper(null));
-		templateArgs.put("package", APP_DIR + ".servlet");
+		templateArgs.put("package", getAppPackage() + ".servlet");
 		OutputStream targetOut = new FileOutputStream(target);
 		template.process(templateArgs, new OutputStreamWriter(targetOut, Charset.forName("UTF-8")));
 		targetOut.close();

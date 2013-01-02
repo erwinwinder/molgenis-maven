@@ -1,5 +1,5 @@
 
-/* Date:        November 26, 2012
+/* Date:        January 2, 2013
  * 
  * generator:   org.molgenis.generators.excel.ImportWizardExcelPrognosisGen 4.0.0-testing
  *
@@ -7,7 +7,7 @@
  * THIS FILE HAS BEEN GENERATED, PLEASE DO NOT EDIT!
  */
 
-package app;
+package org.molgenis.omx;
 
 import java.io.File;
 import java.util.ArrayList;

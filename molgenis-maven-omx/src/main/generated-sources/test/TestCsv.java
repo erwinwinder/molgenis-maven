@@ -1,6 +1,6 @@
-/* File:        app/JUnitTest.java
- * Copyright:   GBIC 2000-2012, all rights reserved
- * Date:        November 26, 2012
+/* File:        org.molgenis.omx/JUnitTest.java
+ * Copyright:   GBIC 2000-2013, all rights reserved
+ * Date:        January 2, 2013
  * 
  * generator:   org.molgenis.generators.tests.TestCsvGen 4.0.0-testing
  *
@@ -10,11 +10,11 @@
 
 package test;
 
-import app.CsvExport;
-import app.CsvImport;
-import app.DatabaseFactory;
+import org.molgenis.omx.CsvExport;
+import org.molgenis.omx.CsvImport;
+import org.molgenis.omx.DatabaseFactory;
 
-import app.JDBCDatabase;
+import org.molgenis.omx.JDBCDatabase;
 
 import java.io.File;
 import java.io.IOException;

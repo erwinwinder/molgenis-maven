@@ -540,6 +540,9 @@ public class Molgenis
 
 		// parsing model
 		model = MolgenisModel.parse(options);
+		
+		//set app package
+		Generator.APP_PACKAGE = model.getName();
 	}
 
 	private void loadFieldTypes()

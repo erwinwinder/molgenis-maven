@@ -1,9 +1,9 @@
 /*
  * Created by: org.molgenis.generators.server.UsedMolgenisOptionsGen
- * Date: November 26, 2012
+ * Date: January 2, 2013
  */
 
-package app.servlet;
+package org.molgenis.omx.servlet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.molgenis.MolgenisOptions;
@@ -26,7 +26,7 @@ public class UsedMolgenisOptions extends MolgenisOptions
 	 * System.out.println(o.generate_doc);
 	 */
 	public UsedMolgenisOptions(){
-		this.appName = "org.molgenis";
+		this.appName = "org.molgenis.omx";
 		this.generate_sql = true;
 		this.model_database = new ArrayList<String>(Arrays.asList(new String[]{"src/main/resources/org/molgenis/omicsconnect/system.xml" ,"src/main/resources/org/molgenis/omicsconnect/observ.xml" ,"src/main/resources/org/molgenis/omicsconnect/extensions/variant.xml" ,"src/main/resources/org/molgenis/omicsconnect/extensions/organization.xml" ,"src/main/resources/org/molgenis/omicsconnect/extensions/gwascentral.xml"}));
 		this.mail_smtp_hostname = "smtp.gmail.com";
@@ -42,7 +42,7 @@ public class UsedMolgenisOptions extends MolgenisOptions
 		this.generate_persistence = true;
 		this.generate_tests = true;
 		this.generate_decorators = false;
-		this.services = new ArrayList<String>(Arrays.asList(new String[]{"app.servlet.GuiService@/molgenis.do" ,"org.molgenis.framework.server.services.MolgenisXrefService@/xref" ,"org.molgenis.framework.server.services.MolgenisTmpFileService@/tmpfile" ,"org.molgenis.framework.server.services.FileService@/"}));
+		this.services = new ArrayList<String>(Arrays.asList(new String[]{"org.molgenis.omx.servlet.GuiService@/molgenis.do" ,"org.molgenis.framework.server.services.MolgenisXrefService@/xref" ,"org.molgenis.framework.server.services.MolgenisTmpFileService@/tmpfile" ,"org.molgenis.framework.server.services.FileService@/"}));
 		this.auth_redirect = "";
 		this.decorator_overriders = "";
 		this.log4j_properties_uri = "";

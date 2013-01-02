@@ -1,7 +1,7 @@
 
-/* File:        Org.molgenis/html/MolgenisPermission.java
- * Copyright:   GBIC 2000-2012, all rights reserved
- * Date:        November 26, 2012
+/* File:        Org.molgenis.omx/html/MolgenisPermission.java
+ * Copyright:   GBIC 2000-2013, all rights reserved
+ * Date:        January 2, 2013
  * 
  * generator:   org.molgenis.generators.ui.HtmlFormGen 4.0.0-testing
  *
