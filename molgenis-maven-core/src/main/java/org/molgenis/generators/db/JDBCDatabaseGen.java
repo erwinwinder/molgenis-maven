@@ -36,7 +36,7 @@ public class JDBCDatabaseGen extends Generator
 
 		List<Entity> entityList = model.getEntities();
 		// this.sortEntitiesByXref(entityList,model); //side effect?
-		File target = new File(this.getSourcePath(options) + APP_DIR + "/JDBCDatabase.java");
+		File target = new File(this.getSourcePath(options) + getAppDir() + "/JDBCDatabase.java");
 		boolean created = target.getParentFile().mkdirs();
 		if (!created && !target.getParentFile().exists())
 		{
@@ -61,7 +61,7 @@ public class JDBCDatabaseGen extends Generator
 
 		templateArgs.put("model", model);
 		templateArgs.put("entities", entityList);
-		templateArgs.put("package", APP_DIR);
+		templateArgs.put("package", getAppPackage());
 		templateArgs.put("auth_loginclass", options.auth_loginclass);
 		templateArgs.put("decorator_overriders", options.decorator_overriders);
 		templateArgs.put("disable_decorators", options.disable_decorators);

@@ -37,7 +37,7 @@ public class CsvImportByIdGen extends MySqlCreateClassPerTableGen
 		List<Entity> entityList = model.getEntities();
 		entityList = MolgenisModel.sortEntitiesByDependency(entityList, model); // side
 																				// effect?
-		File target = new File(this.getSourcePath(options) + "/app/CsvImportById.java");
+		File target = new File(this.getSourcePath(options) + getAppDir() + "/CsvImportById.java");
 		boolean created = target.getParentFile().mkdirs();
 		if (!created && !target.getParentFile().exists())
 		{
@@ -46,7 +46,7 @@ public class CsvImportByIdGen extends MySqlCreateClassPerTableGen
 
 		templateArgs.put("model", model);
 		templateArgs.put("entities", entityList);
-		templateArgs.put("package", "app");
+		templateArgs.put("package", getAppPackage());
 		OutputStream targetOut = new FileOutputStream(target);
 		template.process(templateArgs, new OutputStreamWriter(targetOut, Charset.forName("UTF-8")));
 		targetOut.close();

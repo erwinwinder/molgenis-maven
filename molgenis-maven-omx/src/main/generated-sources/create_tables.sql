@@ -1,6 +1,6 @@
 /*
  * Created by: org.molgenis.generators.sql.MySqlCreateSubclassPerTableGen
- * Date: November 26, 2012
+ * Date: January 2, 2013
  */
 
 /**********CREATE TABLES**********/

@@ -38,7 +38,7 @@ public class RestApiGen extends Generator
 		List<Entity> entityList = model.getEntities();
 		List<Method> methodList = model.getMethods();
 
-		File target = new File(this.getSourcePath(options) + APP_DIR + "/servlet/RestApi.java");
+		File target = new File(this.getSourcePath(options) + getAppDir() + "/servlet/RestApi.java");
 		boolean created = target.getParentFile().mkdirs();
 		if (!created && !target.getParentFile().exists())
 		{
@@ -49,7 +49,7 @@ public class RestApiGen extends Generator
 		templateArgs.put("methods", methodList);
 		templateArgs.put("entities", entityList);
 		templateArgs.put("helper", new GeneratorHelper(null));
-		templateArgs.put("package", APP_DIR);
+		templateArgs.put("package", getAppPackage());
 		templateArgs.put("databaseImp",
 				options.mapper_implementation.equals(MolgenisOptions.MapperImplementation.JPA) ? "jpa" : "jdbc");
 		templateArgs.put("db_filepath", options.db_filepath);

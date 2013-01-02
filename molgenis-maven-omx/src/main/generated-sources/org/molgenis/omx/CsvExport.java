@@ -6,7 +6,7 @@
  * 
  * THIS FILE HAS BEEN GENERATED, PLEASE DO NOT EDIT!
  */
-package app;
+package org.molgenis.omx;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,13 +1,13 @@
-/* File:        app/DatabaseFactory
- * Copyright:   GBIC 2000-2012, all rights reserved
- * Date:        November 26, 2012
+/* File:        org.molgenis.omx/DatabaseFactory
+ * Copyright:   GBIC 2000-2013, all rights reserved
+ * Date:        January 2, 2013
  * 
  * generator:   org.molgenis.generators.db.DatabaseFactoryGen 4.0.0-testing
  *
  * THIS FILE HAS BEEN GENERATED, PLEASE DO NOT EDIT!
  */
 
-package app;
+package org.molgenis.omx;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,14 +27,14 @@ public class DatabaseFactory
 	@Deprecated
 	public static Database create(Connection conn) throws DatabaseException
 	{
-		return new app.JDBCDatabase(conn);
+		return new org.molgenis.omx.JDBCDatabase(conn);
 	}
 
 
 		@Deprecated
         public static Database createInsecure(DataSource data_src, File file_src) throws DatabaseException {
             try {
-                return new app.JDBCDatabase(data_src, file_src);
+                return new org.molgenis.omx.JDBCDatabase(data_src, file_src);
             } catch (Exception ex) {
                 throw new DatabaseException(ex);
             }
@@ -43,7 +43,7 @@ public class DatabaseFactory
         @Deprecated
         public static Database createInsecure() throws DatabaseException {
             try {
-                return new app.JDBCDatabase();
+                return new org.molgenis.omx.JDBCDatabase();
             } catch (Exception ex) {
                 throw new DatabaseException(ex);
             }
@@ -53,7 +53,7 @@ public class DatabaseFactory
 	public static Database create(DataSource data_src, File file_source) throws DatabaseException
 	{
             try {
-                return new app.JDBCDatabase(data_src, file_source);            
+                return new org.molgenis.omx.JDBCDatabase(data_src, file_source);            
             } catch (Exception ex) {
                 throw new DatabaseException(ex);
             }
@@ -63,7 +63,7 @@ public class DatabaseFactory
 	public static Database create(DataSourceWrapper data_src, File file_src) throws DatabaseException
 	{
             try {
-                return new app.JDBCDatabase(data_src, file_src);            
+                return new org.molgenis.omx.JDBCDatabase(data_src, file_src);            
             } catch (Exception ex) {
                 throw new DatabaseException(ex);
             }
@@ -73,7 +73,7 @@ public class DatabaseFactory
 	public static Database create(Properties p) throws DatabaseException
 	{
             try {
-                return new app.JDBCDatabase(p);            
+                return new org.molgenis.omx.JDBCDatabase(p);            
             } catch (Exception ex) {
                 throw new DatabaseException(ex);
             }
@@ -82,7 +82,7 @@ public class DatabaseFactory
 	public static Database create(MolgenisOptions options) throws DatabaseException
 	{
             try {
-                return new app.JDBCDatabase(options);            
+                return new org.molgenis.omx.JDBCDatabase(options);            
             } catch (Exception ex) {
                 throw new DatabaseException(ex);
             }
@@ -91,7 +91,7 @@ public class DatabaseFactory
 	public static Database create() throws DatabaseException
 	{
             try {
-                return new app.JDBCDatabase();            
+                return new org.molgenis.omx.JDBCDatabase();            
             } catch (Exception ex) {
                 throw new DatabaseException(ex);
             }
@@ -101,7 +101,7 @@ public class DatabaseFactory
 	public static Database create(boolean test) throws DatabaseException
 	{
             try {
-                return new app.JDBCDatabase();            
+                return new org.molgenis.omx.JDBCDatabase();            
             } catch (Exception ex) {
                 throw new DatabaseException(ex);
             }
@@ -130,7 +130,7 @@ public class DatabaseFactory
             	if(test) {
                 	new org.molgenis.Molgenis(propertiesFilePath).updateDb(false);
             	} 
-            	return new app.JDBCDatabase(propertiesFilePath);
+            	return new org.molgenis.omx.JDBCDatabase(propertiesFilePath);
             } catch (Exception ex) {
                 throw new DatabaseException(ex);
             }
@@ -138,7 +138,7 @@ public class DatabaseFactory
 
 	public static Database create(Map<String, Object> configOverrides) throws DatabaseException {
 		 try {
-            return new app.JDBCDatabase();            
+            return new org.molgenis.omx.JDBCDatabase();            
         } catch (Exception ex) {
             throw new DatabaseException(ex);
         }

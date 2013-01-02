@@ -4,7 +4,7 @@
 <#--         START OF THE OUTPUT                                       ##-->
 <#--                                                                   ##-->
 <#--#####################################################################-->
-/* File:        app/JUnitTest.java
+/* File:        ${app}/JUnitTest.java
  * Copyright:   GBIC 2000-${year?c}, all rights reserved
  * Date:        ${date}
  * 
@@ -16,12 +16,12 @@
 
 package ${package};
 
-import app.CsvExport;
-import app.CsvImport;
-import app.DatabaseFactory;
+import ${app}.CsvExport;
+import ${app}.CsvImport;
+import ${app}.DatabaseFactory;
 
 <#if databaseImp != 'jpa'>	
-import app.JDBCDatabase;
+import ${app}.JDBCDatabase;
 <#else>
 import javax.persistence.*;
 import org.molgenis.framework.db.jpa.JpaDatabase;
@@ -89,7 +89,7 @@ public class TestCsv
 		{		
             db = DatabaseFactory.create(configOverrides);
 	<#if !options.getAuthLoginclass()?ends_with("SimpleLogin")>
-			app.FillMetadata.fillMetadata(db);
+			${app}.FillMetadata.fillMetadata(db);
 	</#if>			
 		}
 		catch (Exception e)
@@ -137,7 +137,7 @@ public class TestCsv
         TestDataSet set1 = new TestDataSet(50,5);		
         JpaUtil.dropAndCreateTables((JpaDatabase)db, configOverrides);
 <#if !options.getAuthLoginclass()?ends_with("SimpleLogin")>
-			app.FillMetadata.fillMetadata(db);
+		${app}.FillMetadata.fillMetadata(db);
 </#if>			
         <#else>
         TestDataSet set1 = new TestDataSet(50,5);
@@ -168,7 +168,7 @@ public class TestCsv
 		<#if databaseImp = 'jpa'>
             JpaUtil.dropAndCreateTables((JpaDatabase)db, configOverrides);
 <#if !options.getAuthLoginclass()?ends_with("SimpleLogin")>
-			app.FillMetadata.fillMetadata(db);
+			${app}.FillMetadata.fillMetadata(db);
 </#if>			
 		<#else>
 			new Molgenis("${options.molgenis_properties}").updateDb();
@@ -191,7 +191,7 @@ public class TestCsv
 		<#if databaseImp = 'jpa'>
             JpaUtil.dropAndCreateTables((JpaDatabase)db, configOverrides);
 <#if !options.getAuthLoginclass()?ends_with("SimpleLogin")>
-			app.FillMetadata.fillMetadata(db);
+			${app}.FillMetadata.fillMetadata(db);
 </#if>			
 		<#else>
 			new Molgenis("${options.molgenis_properties}").updateDb();

@@ -19,7 +19,7 @@ import freemarker.template.Template;
 
 public abstract class Generator
 {
-	protected final String APP_DIR = "app";
+	public static String APP_PACKAGE = "SET THIS AS VIA UI.xml <molgenis name=\"APP_PACKAGE\"";
 
 	public abstract void generate(Model model, MolgenisOptions options) throws Exception;
 
@@ -27,6 +27,16 @@ public abstract class Generator
 	public void generate(Model model, MolgenisOptions options, String generatedPath) throws Exception
 	{
 		throw new UnsupportedOperationException();
+	}
+	
+	public String getAppPackage()
+	{
+		return APP_PACKAGE.replace("/", ".");
+	}
+	
+	public String getAppDir()
+	{
+		return APP_PACKAGE.replace(".", "/");
 	}
 
 	/**

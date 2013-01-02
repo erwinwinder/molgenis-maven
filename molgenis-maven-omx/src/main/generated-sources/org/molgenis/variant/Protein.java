@@ -1,5 +1,5 @@
 
-/* File:        org.molgenis/model/Protein.java
+/* File:        org.molgenis.omx/model/Protein.java
  * Generator:   org.molgenis.generators.DataTypeGen 4.0.0-testing
  *
  * THIS FILE HAS BEEN GENERATED, PLEASE DO NOT EDIT!

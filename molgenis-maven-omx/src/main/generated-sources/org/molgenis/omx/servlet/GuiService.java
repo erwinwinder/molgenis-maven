@@ -1,9 +1,9 @@
 /*
  * Created by: org.molgenis.generators.server.MolgenisGuiServiceGen
- * Date: November 26, 2012
+ * Date: January 2, 2013
  */
 
-package app.servlet;
+package org.molgenis.omx.servlet;
 
 import org.molgenis.framework.db.Database;
 import org.molgenis.framework.server.MolgenisContext;
@@ -35,7 +35,7 @@ public class GuiService extends MolgenisGuiService implements MolgenisService
 					return dbForController;
 				}
 			};
-			app.getModel().setLabel("org.molgenis");
+			app.getModel().setLabel("org.molgenis.omx");
 			app.getModel().setVersion("4.0.0-testing");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,7 +43,7 @@ public class GuiService extends MolgenisGuiService implements MolgenisService
 		
 
 		
-		new app.ui.InvestigationFormController(app);
+		new org.molgenis.omx.ui.InvestigationFormController(app);
 		return app;
 	}
 }

@@ -30,11 +30,11 @@ public class UsedMolgenisOptionsGen extends Generator
 	{
 		Template template = createTemplate(this.getClass().getSimpleName() + ".ftl");
 		Map<String, Object> templateArgs = createTemplateArguments(options);
-		templateArgs.put("package", APP_DIR);
+		templateArgs.put("package", getAppPackage());
 		templateArgs.put("options", options);
 		templateArgs.put("model", model);
 
-		File target = new File(this.getSourcePath(options) + APP_DIR + "/servlet/UsedMolgenisOptions.java");
+		File target = new File(this.getSourcePath(options) + getAppDir() + "/servlet/UsedMolgenisOptions.java");
 		boolean created = target.getParentFile().mkdirs();
 		if (!created && !target.getParentFile().exists())
 		{

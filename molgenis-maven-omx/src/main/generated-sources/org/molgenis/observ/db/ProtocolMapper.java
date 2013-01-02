@@ -1,6 +1,6 @@
-/* File:        org.molgenis/model/Protocol.java
- * Copyright:   GBIC 2000-2012, all rights reserved
- * Date:        November 26, 2012
+/* File:        org.molgenis.omx/model/Protocol.java
+ * Copyright:   GBIC 2000-2013, all rights reserved
+ * Date:        January 2, 2013
  * Template:	MultiqueryMapperGen.java.ftl
  * generator:   org.molgenis.generators.db.MultiqueryMapperGen 4.0.0-testing
  *

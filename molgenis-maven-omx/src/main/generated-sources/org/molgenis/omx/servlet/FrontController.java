@@ -1,9 +1,9 @@
 /*
  * Created by: org.molgenis.generators.server.FrontControllerGen
- * Date: November 26, 2012
+ * Date: January 2, 2013
  */
 
-package app.servlet;
+package org.molgenis.omx.servlet;
 
 import java.util.LinkedHashMap;
 import java.sql.Connection;
@@ -20,7 +20,7 @@ import org.molgenis.framework.server.MolgenisService;
 import org.molgenis.framework.server.MolgenisRequest;
 import org.molgenis.framework.security.Login;
 import org.apache.commons.dbcp.BasicDataSource;
-import app.DatabaseFactory;
+import org.molgenis.omx.DatabaseFactory;
 
 
 
@@ -39,7 +39,7 @@ public class FrontController extends MolgenisFrontController
 		super.init(conf);
 		
 		//now we can create the MolgenisContext with objects reusable over many requests
-		context = new MolgenisContext(this.getServletConfig(), this.createDataSource(), new UsedMolgenisOptions(), "org.molgenis");
+		context = new MolgenisContext(this.getServletConfig(), this.createDataSource(), new UsedMolgenisOptions(), "org.molgenis.omx");
 		
 		//keep a map of active connections
 		connections = new ConcurrentHashMap<UUID, Connection>();
@@ -49,7 +49,7 @@ public class FrontController extends MolgenisFrontController
 		
 		try
 		{
-			services.put("/molgenis.do", new app.servlet.GuiService(context));
+			services.put("/molgenis.do", new org.molgenis.omx.servlet.GuiService(context));
 			services.put("/xref", new org.molgenis.framework.server.services.MolgenisXrefService(context));
 			services.put("/tmpfile", new org.molgenis.framework.server.services.MolgenisTmpFileService(context));
 			services.put("/", new org.molgenis.framework.server.services.FileService(context));
@@ -86,7 +86,7 @@ public class FrontController extends MolgenisFrontController
 		UUID id = UUID.randomUUID();
 		
 		Connection conn = context.getDataSource().getConnection();
-		//Database db = new app.JDBCDatabase(conn);
+		//Database db = new org.molgenis.omx.JDBCDatabase(conn);
 		Database db = DatabaseFactory.create(conn);	
 		connections.put(id, conn);
 		request.setDatabase(db);

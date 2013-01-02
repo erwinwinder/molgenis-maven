@@ -1,4 +1,4 @@
-package app.servlet;
+package org.molgenis.omx.servlet;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
