@@ -882,37 +882,11 @@ public class MolgenisModelParser
 	public static Model parseDbSchema(ArrayList<String> filenames) throws MolgenisModelException
 	{
 		Model model = new Model("molgenis");
-		Document document = null;
 
 		// initialize the document
 		for (String filename : filenames)
 		{
-			DocumentBuilder builder = null;
-			try
-			{
-				builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-				document = builder.parse(filename.trim());
-			}
-			catch (ParserConfigurationException e)
-			{
-				throw new RuntimeException(e);
-			}
-			catch (Exception e)
-			{
-				try
-				{
-					// try to load from classpath
-					document = builder.parse(ClassLoader.getSystemResourceAsStream(filename.trim()));
-				}
-				catch (Exception e2)
-				{
-					logger.error("parsing of file '" + filename + "' failed.");
-					e.printStackTrace();
-					throw new MolgenisModelException("Parsing of DSL (schema) failed: " + e.getMessage());
-				}
-			}
-
-			parseXmlDocument(model, document);
+			parseXmlDocument(model, MolgenisModelParser.parseXmlFile(filename));
 		}
 
 		return model;
@@ -1405,10 +1379,18 @@ public class MolgenisModelParser
 			}
 			catch (Exception e2)
 			{
-				logger.error("parsing of file '" + filename + "' failed.");
-				e.printStackTrace();
-				throw new MolgenisModelException("Parsing of DSL (ui) failed: " + e.getMessage());
-			}
+                //Try other classloader
+                try
+                {
+                    document = builder.parse(Thread.currentThread().getContextClassLoader().getResourceAsStream (filename.trim()));
+                }
+                catch (Exception e3)
+                {
+                    logger.error("parsing of file '" + filename + "' failed.");
+                    e.printStackTrace();
+                    throw new MolgenisModelException("Parsing of DSL (schema) failed: " + e.getMessage());
+                }
+            }
 		}
 		return document;
 	}
