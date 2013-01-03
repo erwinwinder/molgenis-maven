@@ -1,0 +1,3 @@
+<molgenis name="org.molgenis.omx">
+	<form name="investigation" entity="Individual"/>
+</molgenis>
