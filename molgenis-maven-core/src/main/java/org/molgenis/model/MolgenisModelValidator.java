@@ -312,110 +312,113 @@ public class MolgenisModelValidator
 		for (Entity xref_entity_from : model.getEntities())
 		{
 
-			// iterate through all fields including those inherited from
-			// interfaces
-			for (Field xref_field_from : xref_entity_from.getImplementedFieldsOf(new MrefField()))
-			{
-				try
-				{
-					// retrieve the references to the entity+field
-					Entity xref_entity_to = xref_field_from.getXrefEntity();
-					Field xref_field_to = xref_field_from.getXrefField();
+            if (!xref_entity_from.isImported())
+            {
+                // iterate through all fields including those inherited from
+                // interfaces
+                for (Field xref_field_from : xref_entity_from.getImplementedFieldsOf(new MrefField()))
+                {
+                    try
+                    {
+                        // retrieve the references to the entity+field
+                        Entity xref_entity_to = xref_field_from.getXrefEntity();
+                        Field xref_field_to = xref_field_from.getXrefField();
 
-					// TODO: check whether this link is already present
+                        // TODO: check whether this link is already present
 
-					// create the new entity for the link, if explicitly named
-					String mref_name = xref_field_from.getMrefName(); // explicit
+                        // create the new entity for the link, if explicitly named
+                        String mref_name = xref_field_from.getMrefName(); // explicit
 
-					// if mref_name longer than 30 throw error
-					if (mref_name.length() > 30)
-					{
-						throw new MolgenisModelException("mref_name cannot be longer then 30 characters, found: "
-								+ mref_name);
-					}
+                        // if mref_name longer than 30 throw error
+                        if (mref_name.length() > 30)
+                        {
+                            throw new MolgenisModelException("mref_name cannot be longer then 30 characters, found: "
+                                    + mref_name);
+                        }
 
-					// check if the mref already exists
-					Entity mrefEntity = null;
-					try
-					{
-						mrefEntity = model.getEntity(mref_name);
-					}
-					catch (Exception e)
-					{
-					}
+                        // check if the mref already exists
+                        Entity mrefEntity = null;
+                        try
+                        {
+                            mrefEntity = model.getEntity(mref_name);
+                        }
+                        catch (Exception e)
+                        {
+                        }
 
-					// if mref entity doesn't exist: create
-					if (mrefEntity == null)
-					{
-						mrefEntity = new Entity(mref_name, mref_name, model.getDatabase());
-						mrefEntity.setNamespace(xref_entity_from.getNamespace());
-						mrefEntity.setAssociation(true);
-						mrefEntity.setDescription("Link table for many-to-many relationship '"
-								+ xref_entity_from.getName() + "." + xref_field_from.getName() + "'.");
-						mrefEntity.setSystem(true);
+                        // if mref entity doesn't exist: create
+                        if (mrefEntity == null)
+                        {
+                            mrefEntity = new Entity(mref_name, mref_name, model.getDatabase());
+                            mrefEntity.setNamespace(xref_entity_from.getNamespace());
+                            mrefEntity.setAssociation(true);
+                            mrefEntity.setDescription("Link table for many-to-many relationship '"
+                                    + xref_entity_from.getName() + "." + xref_field_from.getName() + "'.");
+                            mrefEntity.setSystem(true);
 
-						// create id field to ensure ordering
-						Field idField = new Field(mrefEntity, new IntField(), "autoid", "autoid", true, false, false,
-								null);
-						idField.setHidden(true);
-						idField.setDescription("automatic id field to ensure ordering of mrefs");
-						mrefEntity.addField(idField);
-						mrefEntity.addKey(idField.getName(), "unique auto key to ensure ordering of mrefs");
+                            // create id field to ensure ordering
+                            Field idField = new Field(mrefEntity, new IntField(), "autoid", "autoid", true, false, false,
+                                    null);
+                            idField.setHidden(true);
+                            idField.setDescription("automatic id field to ensure ordering of mrefs");
+                            mrefEntity.addField(idField);
+                            mrefEntity.addKey(idField.getName(), "unique auto key to ensure ordering of mrefs");
 
-						// create the fields for the linktable
-						Field field;
-						Vector<String> unique = new Vector<String>();
+                            // create the fields for the linktable
+                            Field field;
+                            Vector<String> unique = new Vector<String>();
 
-						field = new Field(mrefEntity, new XrefField(), xref_field_from.getMrefRemoteid(), null, false,
-								false, false, null);
-						field.setXRefVariables(xref_entity_to.getName(), xref_field_to.getName(),
-								xref_field_from.getXrefLabelNames());
-						if (xref_field_from.isXrefCascade()) field.setXrefCascade(true);
-						mrefEntity.addField(field);
+                            field = new Field(mrefEntity, new XrefField(), xref_field_from.getMrefRemoteid(), null, false,
+                                    false, false, null);
+                            field.setXRefVariables(xref_entity_to.getName(), xref_field_to.getName(),
+                                    xref_field_from.getXrefLabelNames());
+                            if (xref_field_from.isXrefCascade()) field.setXrefCascade(true);
+                            mrefEntity.addField(field);
 
-						unique.add(field.getName());
+                            unique.add(field.getName());
 
-						// add all the key-fields of xref_entity_from
-						for (Field key : xref_entity_from.getKeyFields(Entity.PRIMARY_KEY))
-						{
-							field = new Field(mrefEntity, new XrefField(), xref_field_from.getMrefLocalid(), null,
-									false, false, false, null);
+                            // add all the key-fields of xref_entity_from
+                            for (Field key : xref_entity_from.getKeyFields(Entity.PRIMARY_KEY))
+                            {
+                                field = new Field(mrefEntity, new XrefField(), xref_field_from.getMrefLocalid(), null,
+                                        false, false, false, null);
 
-							// null xreflabel
-							field.setXRefVariables(xref_entity_from.getName(), key.getName(), null);
+                                // null xreflabel
+                                field.setXRefVariables(xref_entity_from.getName(), key.getName(), null);
 
-							mrefEntity.addField(field);
-							unique.add(field.getName());
-						}
+                                mrefEntity.addField(field);
+                                unique.add(field.getName());
+                            }
 
-						// create the unique combination
-						mrefEntity.addKey(unique, false, null);
+                            // create the unique combination
+                            mrefEntity.addKey(unique, false, null);
 
-					}
-					// if mrefEntity does not exist, check xref_labels
-					else
-					{
-						// field is xref_field, does it have label(s)?
-						Field xrefField = mrefEntity.getAllField(xref_field_to.getName());
+                        }
+                        // if mrefEntity does not exist, check xref_labels
+                        else
+                        {
+                            // field is xref_field, does it have label(s)?
+                            Field xrefField = mrefEntity.getAllField(xref_field_to.getName());
 
-						// verify xref_label
-						if (xrefField != null)
-						{
-							// logger.debug("adding xref_label "+xref_field_to.getXrefLabelNames()+"'back' for "+xrefField.getName());
-							xrefField.setXrefLabelNames(xref_field_from.getXrefLabelNames());
+                            // verify xref_label
+                            if (xrefField != null)
+                            {
+                                // logger.debug("adding xref_label "+xref_field_to.getXrefLabelNames()+"'back' for "+xrefField.getName());
+                                xrefField.setXrefLabelNames(xref_field_from.getXrefLabelNames());
 
-						}
-					}
+                            }
+                        }
 
-					// set the linktable reference in the xref-field
-					xref_field_from.setMrefName(mrefEntity.getName());
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-					System.exit(-1);
-				}
-			}
+                        // set the linktable reference in the xref-field
+                        xref_field_from.setMrefName(mrefEntity.getName());
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                        System.exit(-1);
+                    }
+                }
+            }
 		}
 
 	}
