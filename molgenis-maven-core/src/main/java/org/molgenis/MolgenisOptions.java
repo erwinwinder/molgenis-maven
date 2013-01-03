@@ -66,6 +66,12 @@ public class MolgenisOptions implements Serializable
 	@Option(name = "model_database", param = Option.Param.COLLECTION, type = Option.Type.REQUIRED_ARGUMENT, usage = "File with data structure specification (in MOLGENIS DSL). Default: new ArrayList<String>()")
 	public ArrayList<String> model_database = new ArrayList<String>();
 
+    /**
+     * relative paths to the data model XML files, objects in these files are used only, not generated
+     */
+    @Option(name = "import_model_database", param = Option.Param.COLLECTION, type = Option.Type.REQUIRED_ARGUMENT, usage = "File with data structure specification (in MOLGENIS DSL). Default: new ArrayList<String>()")
+    public ArrayList<String> import_model_database = new ArrayList<String>();
+
 	/** relative path to the ui.xml file */
 	@Option(name = "model_userinterface", param = Option.Param.FILEPATH, type = Option.Type.REQUIRED_ARGUMENT, usage = "File with user interface specification (in MOLGENIS DSL). Can be same file as model_database. Default: ''")
 	public String model_userinterface = "";
@@ -244,6 +250,9 @@ public class MolgenisOptions implements Serializable
 
 	@Option(name = "generate_imdb", param = Option.Param.BOOLEAN, type = Option.Type.OPTIONAL_ARGUMENT, usage = "Generate the in memory database classes. Default: true")
 	public boolean generate_imdb = true;
+
+    @Option(name = "generate_model", param = Option.Param.BOOLEAN, type = Option.Type.OPTIONAL_ARGUMENT, usage = "Generate any SQL related classes. Default: true")
+    public boolean generate_model = true;
 
 	@Option(name = "generate_sql", param = Option.Param.BOOLEAN, type = Option.Type.OPTIONAL_ARGUMENT, usage = "Generate any SQL related classes. Default: true")
 	public boolean generate_sql = true;

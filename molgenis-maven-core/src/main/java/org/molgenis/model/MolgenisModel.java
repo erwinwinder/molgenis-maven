@@ -14,6 +14,7 @@ import org.molgenis.fieldtypes.XrefField;
 import org.molgenis.model.elements.Entity;
 import org.molgenis.model.elements.Field;
 import org.molgenis.model.elements.Model;
+import org.molgenis.model.elements.Module;
 
 public class MolgenisModel
 {
@@ -27,12 +28,28 @@ public class MolgenisModel
 		{
 			logger.info("parsing db-schema from " + options.model_database);
 
-			// 19-4-2011 ER: unused code, so commented out!
-			// ArrayList<String> db_files = options.model_database;
-			// for (int i = 0; i < db_files.size(); i++)
-			// db_files.set(i, options.path + db_files.get(i));
-
 			model = MolgenisModelParser.parseDbSchema(options.model_database);
+
+            Model importedModel = MolgenisModelParser.parseDbSchema(options.import_model_database);
+            importedModel.getDatabase().setName("imported");
+
+            for (Module importedModule: importedModel.getModules())
+            {
+                model.getModules().add(importedModule);
+
+                for (Entity importedEntity : importedModule.getEntities())
+                {
+                    importedEntity.setImported(true);
+                    importedEntity.setModel(model);
+
+                    //Prevent duplicate elements (elements of parent are also in the tree)
+                    model.getDatabase().getTreeElements().remove(importedEntity.getName());
+
+                    importedEntity.setParent(model.getDatabase());
+
+                }
+
+            }
 
 			// Get the strings of the property 'authorizable' and add the entity
 			// name

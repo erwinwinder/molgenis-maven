@@ -75,6 +75,9 @@ public class Entity extends DBSchema implements Record
 	/** Default label(s) to be used for Xrefs */
 	private List<String> xrefLabels;
 
+    /** For generator, signals that this is an imported, already generated entity **/
+    private boolean imported;
+
 	// constructor(s)
 	/**
 	 * Default constructor. With this constructor all the needed information of
@@ -149,7 +152,15 @@ public class Entity extends DBSchema implements Record
 		this.system = system;
 	}
 
-	/**
+    public boolean isImported() {
+        return imported;
+    }
+
+    public void setImported(boolean imported) {
+        this.imported = imported;
+    }
+
+    /**
 	 * Returns the label of this entity.
 	 * 
 	 * @return The label of the entity.

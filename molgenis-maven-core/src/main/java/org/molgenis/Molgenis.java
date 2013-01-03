@@ -234,9 +234,6 @@ public class Molgenis
 			options.output_hand = options.output_hand + "/";
 		}
 
-		// USED MOLGENIS OPTIONS
-		generators.add(new UsedMolgenisOptionsGen());
-
 		// DOCUMENTATION
 		if (options.generate_doc)
 		{
@@ -274,28 +271,13 @@ public class Molgenis
 		// generators.add(new DataPListGen());
 		// generators.add(new ViewTypeGen());
 
-		if (options.generate_sql)
+		if (options.generate_model)
 		{
 			if (options.mapper_implementation.equals(MapperImplementation.JPA))
 			{
 				System.out.println("--------------JPAGEN--------------");
-				generators.add(new JpaDatabaseGen());
 				generators.add(new DataTypeGen());
 				generators.add(new JpaMapperGen());
-				generators.add(new JDBCMetaDatabaseGen());
-
-				// generates Entity Listeners
-				// JpaEntityListenerGen entityListGen = new
-				// JpaEntityListenerGen();
-				// entityListGen.setHandwritten(true);
-				// generators.add(entityListGen);
-
-				if (options.generate_persistence)
-				{
-					generators.add(new PersistenceGen());
-				}
-
-				// generators.add(new FillMetadataTablesGen());
 
 			}
 			else
@@ -303,68 +285,45 @@ public class Molgenis
 				// DATABASE
 				// mysql.org
 				if (options.db_driver.equals("com.mysql.jdbc.Driver"))
-				{
-					generators.add(new MySqlCreateSubclassPerTableGen());
-					generators.add(new MySqlAlterSubclassPerTableGen());
-					// use multiquery optimization
-					if (options.mapper_implementation.equals(MapperImplementation.MULTIQUERY))
-					{
-						generators.add(new JDBCDatabaseGen());
-						generators.add(new DataTypeGen());
-						generators.add(new MultiqueryMapperGen());
-					}
-					else if (options.mapper_implementation.equals(MapperImplementation.PREPARED_STATEMENT))
-					{
-						generators.add(new JDBCDatabaseGen());
-						generators.add(new DataTypeGen());
-						generators.add(new PStatementMapperGen());
-					}
+                {
+                    // use multiquery optimization
+                    if (options.mapper_implementation.equals(MapperImplementation.MULTIQUERY))
+                    {
+                        generators.add(new DataTypeGen());
+                        generators.add(new MultiqueryMapperGen());
+                    }
+                    else if (options.mapper_implementation.equals(MapperImplementation.PREPARED_STATEMENT))
+                    {
+                        generators.add(new DataTypeGen());
+                        generators.add(new PStatementMapperGen());
+                    }
 				} // hsqldb.org
 				else if (options.db_driver.equals("oracle.jdbc.driver.OracleDriver"))
 				{
-					generators.add(new OracleCreateSubclassPerTableGen());
-					generators.add(new JDBCDatabaseGen());
 					generators.add(new DataTypeGen());
 					generators.add(new PStatementMapperGen());
 				}
 				else if (options.db_driver.equals("org.hsqldb.jdbcDriver"))
 				{
 					logger.info("HsqlDB generators ....");
-					generators.add(new JDBCDatabaseGen());
 					generators.add(new DataTypeGen());
-					generators.add(new HSqlCreateSubclassPerTableGen());
-					// generators.add(new MultiqueryMapperGen());
 					generators.add(new PStatementMapperGen());
 				} // postgresql
 				else if (options.db_driver.equals("org.postgresql.Driver"))
 				{
-					generators.add(new PSqlCreateSubclassPerTableGen());
 					generators.add(new PStatementMapperGen());
 				} // h2database.com, branch of hsqldb?
 				else if (options.db_driver.equals("org.h2.Driver"))
 				{
 					generators.add(new HSqlCreateSubclassPerTableGen());
 					generators.add(new PStatementMapperGen());
-				} // derby, not functional ignore.
-				else if (options.db_driver.equals("org.apache.derby.jdbc.EmbeddedDriver"))
-				{
-					generators.add(new DerbyCreateSubclassPerTableGen());
 				}
 				else
 				{
 					logger.warn("Unknown database driver " + options.db_driver);
 					// System.exit(-1);
 				}
-
-				// test
-				generators.add(new JDBCMetaDatabaseGen());
-				// SQL
-				generators.add(new CountPerEntityGen());
-				generators.add(new CountPerTableGen());
-				generators.add(new FillMetadataTablesGen());
 			}
-
-			generators.add(new FillMetadataGen());
 
 			// authorization
 			if (!options.auth_loginclass.endsWith("SimpleLogin"))
@@ -378,10 +337,14 @@ public class Molgenis
 				generators.add(new MapperDecoratorGen());
 			}
 
-			// DatabaseFactory
-			// if (!options.db_driver.equals("org.hsqldb.jdbcDriver")) {
-			generators.add(new DatabaseFactoryGen());
-			// }
+            //csv readers
+            generators.add(new CsvReaderGen());
+
+            //Excel readers
+            generators.add(new ExcelReaderGen());
+
+            //HTML forms
+            generators.add(new HtmlFormGen());
 		}
 		else
 		{
@@ -396,12 +359,65 @@ public class Molgenis
 		{
 			logger.info("Skipping Python interface ....");
 		}
-		// generators.add(new HsqlDbGen());
+
+
+        if (options.generate_sql)
+        {
+            if (options.mapper_implementation.equals(MapperImplementation.JPA))
+            {
+                generators.add(new JpaDatabaseGen());
+
+                if (options.generate_persistence)
+                {
+                    generators.add(new PersistenceGen());
+                }
+
+            }
+            else
+            {
+                if (options.db_driver.equals("com.mysql.jdbc.Driver"))
+                {
+                    generators.add(new MySqlCreateSubclassPerTableGen());
+                    generators.add(new MySqlAlterSubclassPerTableGen());
+                }
+                else if (options.db_driver.equals("oracle.jdbc.driver.OracleDriver"))
+                {
+                    generators.add(new OracleCreateSubclassPerTableGen());
+                }
+                else if (options.db_driver.equals("org.hsqldb.jdbcDriver"))
+                {
+                    generators.add(new HSqlCreateSubclassPerTableGen());
+                }
+                else if (options.db_driver.equals("org.postgresql.Driver"))
+                {
+                    generators.add(new PSqlCreateSubclassPerTableGen());
+                }
+                // derby, not functional ignore.
+                else if (options.db_driver.equals("org.apache.derby.jdbc.EmbeddedDriver"))
+                {
+                    generators.add(new DerbyCreateSubclassPerTableGen());
+                }
+
+                // test
+                generators.add(new JDBCMetaDatabaseGen());
+
+                // SQL
+                generators.add(new CountPerEntityGen());
+                generators.add(new CountPerTableGen());
+                generators.add(new FillMetadataTablesGen());
+            }
+
+            generators.add(new JDBCDatabaseGen());
+            generators.add(new FillMetadataGen());
+
+            // DatabaseFactory
+            generators.add(new DatabaseFactoryGen());
+
+        }
 
 		// CSV
 		if (options.generate_csv)
 		{
-			generators.add(new CsvReaderGen());
 			generators.add(new CsvImportByIdGen());
 			generators.add(new CsvExportGen());
 			generators.add(new CsvImportGen());
@@ -428,12 +444,18 @@ public class Molgenis
 			logger.info("Skipping R interface ....");
 		}
 
-		// always generate frontcontroller
-		generators.add(new FrontControllerGen());
+		if (!options.services.isEmpty())
+        {
+            // USED MOLGENIS OPTIONS
+            generators.add(new UsedMolgenisOptionsGen());
 
-		// also generate context (still used?)
-		generators.add(new MolgenisServletContextGen());
-		generators.add(new MolgenisContextListenerGen());
+		    generators.add(new FrontControllerGen());
+
+            // also generate context (still used?)
+            generators.add(new MolgenisServletContextGen());
+            generators.add(new MolgenisContextListenerGen());
+        }
+
 
 		// optional: the GUI
 		if (options.generate_gui)
@@ -444,7 +466,6 @@ public class Molgenis
 		// HTML
 		if (options.generate_html)
 		{
-			generators.add(new HtmlFormGen());
 			generators.add(new FormControllerGen());
 			generators.add(new MenuControllerGen());
 		}
@@ -503,14 +524,12 @@ public class Molgenis
 		// Excel
 		if (options.generate_ExcelImport)
 		{
-			generators.add(new ExcelReaderGen());
 			generators.add(new ExcelImportGen());
 			generators.add(new ExcelExportGen());
 			generators.add(new ImportWizardExcelPrognosisGen());
 			if (!options.generate_csv)
 			{
 				logger.info("Automatically including the CSV importers needed for Excel import");
-				generators.add(new CsvReaderGen());
 				generators.add(new CsvImportByIdGen());
 				generators.add(new CsvExportGen());
 				generators.add(new CsvImportGen());
@@ -568,8 +587,7 @@ public class Molgenis
 
 	/**
 	 * Apply all generators on the model
-	 * 
-	 * @param model
+	 *
 	 */
 	public void generate() throws Exception
 	{
