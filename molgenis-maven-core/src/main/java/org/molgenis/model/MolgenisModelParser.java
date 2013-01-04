@@ -878,10 +878,15 @@ public class MolgenisModelParser
 		return model;
 	}
 
+    public static Model parseDbSchema(ArrayList<String> filenames) throws MolgenisModelException
+    {
+        return MolgenisModelParser.parseDbSchema(filenames, "molgenis");
+    }
+
 	// db parser
-	public static Model parseDbSchema(ArrayList<String> filenames) throws MolgenisModelException
+	public static Model parseDbSchema(ArrayList<String> filenames, String modelName) throws MolgenisModelException
 	{
-		Model model = new Model("molgenis");
+		Model model = new Model(modelName);
 
 		// initialize the document
 		for (String filename : filenames)

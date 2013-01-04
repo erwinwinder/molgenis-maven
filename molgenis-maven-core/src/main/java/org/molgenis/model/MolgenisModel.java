@@ -11,10 +11,8 @@ import org.apache.log4j.Logger;
 import org.molgenis.MolgenisOptions;
 import org.molgenis.fieldtypes.MrefField;
 import org.molgenis.fieldtypes.XrefField;
-import org.molgenis.model.elements.Entity;
-import org.molgenis.model.elements.Field;
-import org.molgenis.model.elements.Model;
-import org.molgenis.model.elements.Module;
+import org.molgenis.model.elements.*;
+import org.molgenis.util.SimpleTree;
 
 public class MolgenisModel
 {
@@ -30,25 +28,23 @@ public class MolgenisModel
 
 			model = MolgenisModelParser.parseDbSchema(options.model_database);
 
-            Model importedModel = MolgenisModelParser.parseDbSchema(options.import_model_database);
-            importedModel.getDatabase().setName("imported");
+            Model importedModel = MolgenisModelParser.parseDbSchema(options.import_model_database, "imported");
+            MolgenisModelValidator.validate(importedModel, options); //Create mref links
 
             for (Module importedModule: importedModel.getModules())
             {
                 model.getModules().add(importedModule);
+            }
 
-                for (Entity importedEntity : importedModule.getEntities())
-                {
-                    importedEntity.setImported(true);
-                    importedEntity.setModel(model);
+            for (Entity importedEntity : importedModel.getEntities())
+            {
+                importedEntity.setImported(true);
+                importedEntity.setModel(model);
 
-                    //Prevent duplicate elements (elements of parent are also in the tree)
-                    model.getDatabase().getTreeElements().remove(importedEntity.getName());
+                //Prevent duplicate elements (elements of parent are also in the tree)
+                model.getDatabase().getTreeElements().remove(importedEntity.getName());
 
-                    importedEntity.setParent(model.getDatabase());
-
-                }
-
+                importedEntity.setParent(model.getDatabase());
             }
 
 			// Get the strings of the property 'authorizable' and add the entity
