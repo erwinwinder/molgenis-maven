@@ -1,3 +1,15 @@
 <molgenis name="org.molgenis.omx" label="Molgenis Maven Test">
-	<form name="investigation" entity="Individual"/>
+    <menu name="main">
+        <menu name ="Individuals">
+            <form name="Individual" entity="Individual" />
+        </menu>
+        <menu name ="Protocols">
+            <form name="Protocol" entity="Protocol">
+                <form name="Values" entity="DataSet" />
+            </form>
+        </menu>
+        <menu name ="ObservedValues">
+            <form name="ObservedValue" entity="ObservedValue" />
+        </menu>
+    </menu>
 </molgenis>
