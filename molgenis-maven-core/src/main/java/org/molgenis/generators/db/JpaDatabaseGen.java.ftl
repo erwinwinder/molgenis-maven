@@ -1,6 +1,6 @@
 <#include "GeneratorHelper.ftl">
 
-package app;
+package ${package};
 
 public class JpaDatabase extends org.molgenis.framework.db.jpa.JpaDatabase
 {

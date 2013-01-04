@@ -398,8 +398,7 @@ public class Molgenis
                     generators.add(new DerbyCreateSubclassPerTableGen());
                 }
 
-                // test
-                generators.add(new JDBCMetaDatabaseGen());
+                generators.add(new JDBCDatabaseGen());
 
                 // SQL
                 generators.add(new CountPerEntityGen());
@@ -407,7 +406,7 @@ public class Molgenis
                 generators.add(new FillMetadataTablesGen());
             }
 
-            generators.add(new JDBCDatabaseGen());
+            generators.add(new JDBCMetaDatabaseGen());
             generators.add(new FillMetadataGen());
 
             // DatabaseFactory

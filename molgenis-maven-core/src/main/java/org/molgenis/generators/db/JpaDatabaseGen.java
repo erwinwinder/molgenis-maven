@@ -37,13 +37,7 @@ public class JpaDatabaseGen extends Generator
 		List<Entity> entityList = model.getEntities();
 		// this.sortEntitiesByXref(entityList,model); //side effect?
 
-		File target = new File(this.getSourcePath(options) /*
-															 * +
-															 * model.getName().
-															 * toLowerCase
-															 * ().replace(".",
-															 * "/")
-															 */+ "/app/JpaDatabase.java");
+		File target = new File(this.getSourcePath(options) + getAppDir() + "/JpaDatabase.java");
 		boolean created = target.getParentFile().mkdirs();
 		if (!created && !target.getParentFile().exists())
 		{
@@ -52,8 +46,7 @@ public class JpaDatabaseGen extends Generator
 
 		templateArgs.put("model", model);
 		templateArgs.put("entities", entityList);
-		String packageName = model.getName().toLowerCase();
-		templateArgs.put("package", packageName);
+		templateArgs.put("package", getAppPackage());
 		templateArgs.put("auth_loginclass", options.auth_loginclass);
 		templateArgs.put("disable_decorators", options.disable_decorators);
 		OutputStream targetOut = new FileOutputStream(target);
