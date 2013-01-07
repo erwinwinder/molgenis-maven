@@ -14,31 +14,6 @@
         <basedir>${basedir}</basedir>
     </properties>
 
-    <profiles>
-        <profile>
-            <id>updatedb</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <version>1.3</version>
-                        <configuration>
-                            <tasks>
-                                <property name="compile_classpath" refid="maven.compile.classpath" />
-                                <echo message="compile classpath: ${compile_classpath}" />
-                                <java classname="org.molgenis.Molgenis">
-                                    <classpath refid="maven.compile.classpath" />
-                                    <arg value="${basedir}/target/classes/org/molgenis/omicsconnect/omicsconnect.properties" />
-                                    <arg value="--updatedb" />
-                                </java>
-                            </tasks>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
     <build>
 
 		<plugins>
