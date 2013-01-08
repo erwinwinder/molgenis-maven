@@ -102,6 +102,6 @@
 		<module>molgenis-maven-omx</module>
 		<module>molgenis-maven-webres</module>
 		<module>molgenis-maven-portal</module>
-		<module>molgenis-maven-mvc</module>
+		<module>molgenis-maven-pheno</module>
 	</modules>
 </project>
