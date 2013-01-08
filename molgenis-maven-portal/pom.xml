@@ -8,6 +8,7 @@
 	</parent>
 	<groupId>org.molgenis</groupId>
 	<artifactId>molgenis-maven-portal</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
     <profiles>
@@ -146,7 +147,7 @@
 		<dependency>
 			<groupId>org.molgenis</groupId>
 			<artifactId>molgenis-omx</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>jdbc-0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.molgenis</groupId>
