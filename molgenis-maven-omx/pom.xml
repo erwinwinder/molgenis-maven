@@ -8,11 +8,47 @@
 	</parent>
 	<groupId>org.molgenis</groupId>
 	<artifactId>molgenis-omx</artifactId>
+    <version>jdbc-0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
     <properties>
         <basedir>${basedir}</basedir>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>generate</id>
+            <build>
+                <plugins>
+                    <!-- run generator -->
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.3</version>
+                        <executions>
+                            <execution>
+                                <id>generate-source</id>
+                                <phase>generate-sources</phase>
+                                <configuration>
+                                    <tasks>
+                                        <property name="compile_classpath" refid="maven.compile.classpath" />
+                                        <echo message="compile classpath: ${compile_classpath}" />
+                                        <java classname="org.molgenis.Molgenis">
+                                            <classpath refid="maven.compile.classpath" />
+                                            <arg
+                                                    value="${basedir}/target/classes/org/molgenis/omicsconnect/omicsconnect.properties" />
+                                        </java>
+                                    </tasks>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <build>
 
@@ -47,31 +83,6 @@
                 </executions>
             </plugin>
 
-			<!-- run generator -->
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.3</version>
-				<executions>
-					<execution>
-                        <id>generate-source</id>
-						<phase>generate-sources</phase>
-						<configuration>
-							<tasks>
-								<property name="compile_classpath" refid="maven.compile.classpath" />
-								<echo message="compile classpath: ${compile_classpath}" />
-								<java classname="org.molgenis.Molgenis">
-									<classpath refid="maven.compile.classpath" />
-									<arg
-										value="${basedir}/target/classes/org/molgenis/omicsconnect/omicsconnect.properties" />
-								</java>
-							</tasks>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 
             <!-- Generate JAXB Java source files from an XSD files
             <plugin>
