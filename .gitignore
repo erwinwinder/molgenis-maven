@@ -4,3 +4,5 @@
 *.classpath*
 logger.out
 */.logger.out
+/.idea/
+/*.iml
